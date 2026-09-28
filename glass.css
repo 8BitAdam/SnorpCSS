@@ -1,0 +1,27 @@
+.glass-transparent {
+    opacity: 0;
+}
+
+.glass-opacity-10 {
+    opacity: 0.1;
+}
+
+.glass-opacity-25 {
+    opacity: 0.25;
+}
+
+.glass-opacity-50 {
+    opacity: 0.5;
+}
+
+.glass-opacity-75 {
+    opacity: 0.75;
+}
+
+.glass-opacity-90 {
+    opacity: 0.9;
+}
+
+.glass-opacity-100 {
+    opacity: 1;
+}

@@ -1,0 +1,64 @@
+/* ============================= */
+/* MOBILE NAVIGATION             */
+/* ============================= */
+
+.autofy-nav-hamburger {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+
+    nav.autofy-nav-rounded-underline-dogerblue-darkgrey-dogerblue ul,
+    nav.autofy-nav-fullwide-underline-dogerblue-darkgrey-dogerblue ul,
+    nav.autofy-nav-sticky-underline-dogerblue-darkgrey-dogerblue ul,
+    nav.autofy-nav-vertical-sticky-underline-dogerblue-darkgrey-dogerblue ul {
+
+        display: none;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    nav.autofy-nav-rounded-underline-dogerblue-darkgrey-dogerblue ul.mobile-open,
+    nav.autofy-nav-fullwide-underline-dogerblue-darkgrey-dogerblue ul.mobile-open,
+    nav.autofy-nav-sticky-underline-dogerblue-darkgrey-dogerblue ul.mobile-open,
+    nav.autofy-nav-vertical-sticky-underline-dogerblue-darkgrey-dogerblue ul.mobile-open {
+
+        display: block;
+    }
+
+    nav.autofy-nav-rounded-underline-dogerblue-darkgrey-dogerblue ul li,
+    nav.autofy-nav-fullwide-underline-dogerblue-darkgrey-dogerblue ul li,
+    nav.autofy-nav-sticky-underline-dogerblue-darkgrey-dogerblue ul li,
+    nav.autofy-nav-vertical-sticky-underline-dogerblue-darkgrey-dogerblue ul li {
+
+        float: none;
+        width: 100%;
+    }
+
+    nav.autofy-nav-rounded-underline-dogerblue-darkgrey-dogerblue ul li a,
+    nav.autofy-nav-fullwide-underline-dogerblue-darkgrey-dogerblue ul li a,
+    nav.autofy-nav-sticky-underline-dogerblue-darkgrey-dogerblue ul li a,
+    nav.autofy-nav-vertical-sticky-underline-dogerblue-darkgrey-dogerblue ul li a {
+
+        text-align: left;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .autofy-nav-hamburger {
+        display: block;
+        width: 100%;
+        padding: 14px 16px;
+        border: none;
+        background-color: darkgrey;
+        color: black;
+        font-size: 24px;
+        text-align: right;
+        cursor: pointer;
+    }
+
+    .autofy-nav-hamburger:hover {
+        background-color: #c0c0c0;
+    }
+
+}

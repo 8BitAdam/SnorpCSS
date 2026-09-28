@@ -1,0 +1,69 @@
+.popz-1{
+    z-index: -1;
+}
+.popz-2{
+    z-index: -2;
+}
+.popz-3{
+    z-index: -3;
+}
+.popz-4{
+    z-index: -4;
+}
+.popz-5{
+    z-index: -5;
+}
+.popz-6{
+    z-index: -6;
+}
+.popz-7{
+    z-index: -7;
+}
+.popz-8{
+    z-index: -8;
+}
+.popz-9{
+    z-index: -9;
+}
+.popz-10{
+    z-index: -10;
+}
+.zpop-reset-initial{
+    z-index: initial;
+}
+.blowz-1{
+    z-index: 1;
+}
+.blow-2{
+    z-index: 2;
+}
+.blow-3{
+    z-index: 3;
+}
+.blow-4{
+    z-index: 4;
+}
+.blow-5{
+    z-index: 5;
+}
+.blow-6{
+    z-index: 6;
+}
+.blow-7{
+    z-index: 7;
+}
+.blow-8{
+    z-index: 8;
+}
+.blow-9{
+    z-index: 9;
+}
+.blow-10{
+    z-index: 10;
+}
+.zpop-auto{
+    z-index: auto;
+}
+.zpop-inherit{
+    z-index: inherit;
+}
