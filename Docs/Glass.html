@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Use Glass opacity utilities to fade interface elements.">
+    <title>Glass | Snorp CSS</title>
+    <link rel="stylesheet" href="../css/flexi.css">
+    <link rel="stylesheet" href="../css/glass.css">
+    <link rel="stylesheet" href="../nonSnorpCSS/style.css">
+    <link rel="shortcut icon" href="../logo.png" type="image/x-icon">
+</head>
+<body>
+    <header class="top-color"><div class="site-width"><div class="row">
+        <div class="col-1" style="display:flex;align-items:center;gap:.75em"><h1 style="font-size:1.5em;white-space:nowrap">Snorp {CSS}</h1><figure style="width:42px;height:42px;flex-shrink:0"><img src="../logo.png" alt="Snorp logo" style="border-radius:8px"></figure></div>
+        <div class="col-2"><nav class="center" aria-label="Main navigation"><ul><li><a href="../index.html">Home</a></li><li><a href="../index.html#css-index">CSS Index</a></li><li><a href="../index.html#js-index">JS Index</a></li></ul></nav></div>
+    </div></div></header>
+    <main class="site-width pad-btm-3">
+        <section class="highlight" style="margin-top:1.5em"><p><a href="../index.html">Snorp CSS</a> / Documentation / Glass</p><h2 style="font-size:1.8em">Glass</h2><p>Fade an element with a single opacity utility class.</p><p><strong>Type:</strong> CSS <strong>File:</strong> <code>glass.css</code></p></section>
+        <nav aria-label="On this page" style="margin-top:1.5em"><ul style="display:flex;flex-wrap:wrap;gap:1em;list-style:none"><li><a href="#overview">Overview</a></li><li><a href="#installation">Installation</a></li><li><a href="#examples">Examples</a></li><li><a href="#reference">Reference</a></li><li><a href="#related">Related</a></li></ul></nav>
+        <section id="overview" style="margin-top:2em"><header><h2>Overview</h2></header><p>Glass defines opacity classes from transparent to fully opaque. Add one class to the element you want to fade.</p><ul><li>Useful for muted states and translucent overlays.</li><li>Works with text, images, and other elements.</li><li>No JavaScript or configuration is required.</li></ul></section>
+        <section id="installation" style="margin-top:2em"><header><h2>Installation</h2></header><p>Include the stylesheet in your page head.</p><pre><code>&lt;link rel="stylesheet" href="../css/glass.css"&gt;</code></pre></section>
+        <section id="examples" style="margin-top:2em"><header><h2>Examples</h2></header><p>Compare the same colored block at different opacity levels. The surrounding background shows through the faded blocks.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:1em;padding:1em;background:#f2a359;border-radius:8px;color:#222">
+                <div class="glass-opacity-25" style="background:#fff;padding:1em">25%</div><div class="glass-opacity-50" style="background:#fff;padding:1em">50%</div><div class="glass-opacity-75" style="background:#fff;padding:1em">75%</div><div class="glass-opacity-100" style="background:#fff;padding:1em">100%</div>
+            </div>
+            <pre><code>&lt;div class="glass-opacity-50"&gt;Half opacity&lt;/div&gt;
+&lt;img class="glass-opacity-75" src="photo.jpg" alt="..."&gt;</code></pre>
+            <p>Opacity applies to the whole element, including its children.</p>
+        </section>
+        <section id="reference" style="margin-top:2em"><header><h2>Reference</h2></header><div style="overflow-x:auto"><table><thead><tr><th scope="col">Class</th><th scope="col">Opacity</th><th scope="col">Use</th></tr></thead><tbody><tr><td><code>.glass-transparent</code></td><td>0%</td><td>Hide visually while retaining layout space.</td></tr><tr><td><code>.glass-opacity-10</code>, <code>-25</code>, <code>-50</code>, <code>-75</code>, <code>-90</code></td><td>10%, 25%, 50%, 75%, 90%</td><td>Intermediate opacity levels.</td></tr><tr><td><code>.glass-opacity-100</code></td><td>100%</td><td>Fully opaque.</td></tr></tbody></table></div><p>For content that should not be visible or keyboard-accessible, opacity alone is not a substitute for hiding it semantically.</p></section>
+        <section id="related" style="margin-top:2em"><header><h2>Related</h2></header><ul><li><a href="Spray.html">Spray</a> - Set colors on the elements you fade.</li><li><a href="Spaces.html">Spaces</a> - Add spacing around overlays and muted content.</li></ul></section>
+        <p><a href="../index.html" class="btn">Back to Snorp CSS</a></p>
+    </main><footer><p>Snorp CSS &copy; 2026 - Modular CSS Layout Engine</p></footer>
+</body>
+</html>

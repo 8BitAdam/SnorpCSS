@@ -1,30 +1,217 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Snorp CSS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snorp CSS</title>
+    <script src="js/A11y.js"></script>
+    <script src="js/LazyLoader.js"></script>
+    <script src="js/Scroller.js"></script>
+    <!-- Local Snorp CSS stylesheets -->
+    <link rel="stylesheet" href="css/flexi.css">
+    <link rel="stylesheet" href="css/glass.css">
+    <link rel="stylesheet" href="css/spaces.css">
+    <link rel="stylesheet" href="css/spray.css">
+    <link rel="stylesheet" href="css/wordy.css">
+    <link rel="stylesheet" href="css/zpop.css">
+    <link rel="stylesheet" href="nonSnorpCSS/style.css">
+<link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    <style>
+
+    </style>
 </head>
+
 <body>
-	<main>
-		<h1>CSS files</h1>
-		<ul>
-			<li><a href="flexi.css">flexi.css</a></li>
-			<li><a href="glass.css">glass.css</a></li>
-			<li><a href="nav.css">nav.css</a></li>
-			<li><a href="Spaces.css">Spaces.css</a></li>
-			<li><a href="spray.css">spray.css</a></li>
-			<li><a href="wordy.css">wordy.css</a></li>
-			<li><a href="zpop.css">zpop.css</a></li>
-			<li><a href="Autofy/Autofy-nav.css">Autofy/Autofy-nav.css</a></li>
-			<li><a href="Autofy/Autofy-mobile-nav.css">Autofy/Autofy-mobile-nav.css</a></li>
-		</ul>
-        <p>JavaScript Stuffs</p>
-        <ul>
-            <li><a href="/js/ToolTips.js">PROTOTYPE: UNIVERSAL TOOL TIP</a></li>
-            <li><a href="/js/Autofy-mobile-nav.js">Autfy navbar mobile</a></li>
-            <li><a href="/js/A11y.js"> auto accessabilty page</a></li>
-        </ul>
-	</main>
+    <header class="top-color">
+        <div class="site-width">
+            <div class="row">
+                <!-- Title Column -->
+                <div class="col-1" style="display: flex; align-items: center; gap: 0.75em;">
+                     <h1 style="font-size: 1.5em; white-space: nowrap;">Snorp {CSS}</h1>
+                    <figure style="width: 42px; height: 42px; flex-shrink: 0;">
+                        <img src="logo.png" alt="Snorp Logo" style="border-radius: 8px;">
+                    </figure>
+                   
+                </div>
+
+                <!-- Fixed Semantic Navigation Column -->
+                <div class="col-2">
+                    <nav class="center">
+                        <ul>
+                            <li><a href="#css-index">CSS Index</a></li>
+                            <li><a href="#js-index">JS Index</a></li>
+                        </ul>
+                    </nav>
+                </div>
+<!-- Minimal Styled Search Bar Column -->
+<div class="col-1">
+    <form class="search-box" action="#0" method="get" onsubmit="event.preventDefault();" style="display: flex; align-items: center; gap: 0.4em;">
+        <!-- Dropdown added before input -->
+        <select name="type" aria-label="Filter search type" style="padding: 0.4em 0.6em; border-radius: 6px; border: 1px solid #ccc; background-color: #fff; font-size: 0.9em; cursor: pointer;">
+            <option value="css">CSS</option>
+            <option value="js">JS</option>
+        </select>
+
+        <input type="search" placeholder="Search Snorp..." aria-label="Search site content">
+        <button type="submit" aria-label="Submit Search">
+            <svg viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </button>
+    </form>
+</div>
+
+            </div>
+        </div>
+    </header>
+
+    <main class="site-width pad-btm-3">
+        <section class="highlight" style="margin-top: 1.5em;">
+            <h2 style="font-size: 1.8em; margin-bottom: 0.4em;">Welcome to Snorp CSS</h2>
+            <p>Snorp CSS is a libary of CSS and JS scripts. this is hosted on github pages. to learn more about a file click the item cards below, or search what your looking for</search></p>
+            <a href="#css-index" class="btn">Browse Assets</a>
+        </section>
+
+        <section id="css-index" style="margin-top: 3em; scroll-margin-top: 2em;">
+            <header style="border-bottom: 2px solid var(--main-color); padding-bottom: 0.5em; margin-bottom: 1em;">
+                <h2>CSS Index</h2>
+                <p style="color: #555;">Little cube things that lead you to docs</p>
+            </header>
+
+            <div class="index-grid">
+                <a href="Docs/Flexi.html" class="index-card">
+                    <h4>Flexi</h4>
+                    <p>Responsive flex rows and proportional columns, with rows stacking below 800px.</p>
+                    <code>flexi.css</code>
+                </a>
+                <a href="Docs/Glass.html" class="index-card">
+                    <h4>Glass</h4>
+                    <p>Opacity utility classes range from fully transparent to fully opaque.</p>
+                    <code>glass.css</code>
+                </a>
+                <a href="Docs/Flippy.html" class="index-card">
+                    <h4>Flippy</h4>
+                    <p>Builds 3D flip cards with front and back faces and a hover animation.</p>
+                    <code>flippy.css</code>
+                </a>
+                <a href="Docs/Spaces.html" class="index-card">
+                    <h4>Spaces Utilities</h4>
+                    <p>Spacing utilities for padding, margins, and gaps in reusable em increments.</p>
+                    <code>spaces.css</code>
+                </a>
+                <a href="Docs/Spray.html" class="index-card">
+                    <h4>Spray</h4>
+                    <p>Apply named CSS colors to text, backgrounds, borders, outlines, and SVGs.</p>
+                    <code>spray.css</code>
+                </a>
+                <a href="Docs/Glowup.html" class="index-card">
+                    <h4>Glowup</h4>
+                    <p>Adds a pulsing pink glow to text when you hover over a .Glowup element.</p>
+                    <code>glowup.css</code>
+                </a>
+                <a href="Docs/zPop.html" class="index-card">
+                    <h4>zPop</h4>
+                    <p>Set stacking order with z-index utilities from -10 through 10.</p>
+                    <code>zpop.css</code>
+                </a>
+                <a href="Docs/Ribbon.html" class="index-card">
+                    <h4>Ribbon</h4>
+                    <p>Place a rotated badge ribbon at the top-right of a positioned element.</p>
+                    <code>ribbon.css</code>
+                </a>
+                <a href="Docs/Wordy.html" class="index-card">
+                    <h4>Wordy</h4>
+                    <p>Control text wrapping, underline offsets, indentation, and other text layout.</p>
+                    <code>wordy.css</code>
+                </a>
+            </div>
+        </section>
+
+        <section id="js-index" style="margin-top: 3em; scroll-margin-top: 2em;">
+            <header style="border-bottom: 2px solid var(--main-color); padding-bottom: 0.5em; margin-bottom: 1em;">
+                <h2>JS Index</h2>
+                <p style="color: #555;">Optional JavaScript modules for interactive components.</p>
+            </header>
+
+            <div class="index-grid">
+                <a href="Docs/A11y.html" class="index-card" style="border-left-color: var(--main-color);">
+                    <h4>A11y Accessibility</h4>
+                    <p>Offer controls for text size, spacing, fonts, contrast, focus, and motion preferences.</p>
+                    <code>A11y.js</code>
+                </a>
+                <a href="Docs/ToolTippy.html" class="index-card" style="border-left-color: var(--main-color);">
+                    <h4>ToolTippy</h4>
+                    <p>Show positioned hover and touch tooltips on elements with data-tooltip text.</p>
+                    <code>ToolTippy.js</code>
+                </a>
+                <a href="Docs/LazyLoader.html" class="index-card" style="border-left-color: var(--main-color);">
+                    <h4>Lazy Loader</h4>
+                    <p>Defer images, video, audio, iframes, and background images until near the viewport.</p>
+                    <code>LazyLoader.js</code>
+                </a>
+                <a href="Docs/Scroller.html" class="index-card" style="border-left-color: var(--main-color);">
+                    <h4>Scroller</h4>
+                    <p>Scroll smoothly to in-page targets when their anchor links are clicked.</p>
+                    <code>Scroller.js</code>
+                </a>
+                <a href="Docs/Brew.html" class="index-card" style="border-left-color: var(--main-color);">
+                    <h4>Brew</h4>
+                    <p>Compile and run inline or external CoffeeScript directly in the browser.</p>
+                    <code>Brew.js</code>
+                </a>
+            </div>
+        </section>
+
+        <section id="cards" style="margin-top: 3.5em;">
+            <h2 style="margin-bottom: 1em;">New Stuff</h2>
+            <div class="cards">
+                <section>
+                    <figure>
+                        <img src="https://picsum.photos/id/1015/600/400" alt="Card feature demo">
+                    </figure>
+                    <div>
+                        <header>
+                            <h3>Brew.js</h3>
+                        </header>
+                        <p>Utilizes auto-fit grid layouts with smooth card hover elevation effects.</p>
+                        <a href="Docs/Brew.html" class="btn">View Details</a>
+                    </div>
+                </section>
+
+                <section>
+                    <figure>
+                        <img src="https://picsum.photos/id/1018/600/400" alt="Glass card demo">
+                    </figure>
+                    <div>
+                        <header>
+                            <h3>Ribbon.css</h3>
+                        </header>
+                        <p>Styled with CSS custom variables for primary, link, light, and dark palette accents.</p>
+                        <a href="Docs/Ribbon.html" class="btn">View Details</a>
+                    </div>
+                </section>
+
+                <section>
+                    <figure>
+                        <img src="https://picsum.photos/id/1039/600/400" alt="Responsive layout demo">
+                    </figure>
+                    <div>
+                        <header>
+                            <h3>GlowUp</h3>
+                        </header>
+                        <p>Automatically stacks grid columns into a mobile-friendly view on narrow viewports.</p>
+                        <a href="Docs/Glowup.html" class="btn">View Details</a>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Snorp CSS &copy; 2026 — Modular CSS Layout Engine</p>
+    </footer>
 </body>
+
 </html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create simple 3D flip cards with Flippy CSS.">
+    <title>Flippy | Snorp CSS</title>
+    <link rel="stylesheet" href="../css/flexi.css"><link rel="stylesheet" href="../css/flippy.css"><link rel="stylesheet" href="../nonSnorpCSS/style.css"><link rel="shortcut icon" href="../logo.png" type="image/x-icon">
+</head>
+<body>
+    <header class="top-color"><div class="site-width"><div class="row"><div class="col-1" style="display:flex;align-items:center;gap:.75em"><h1 style="font-size:1.5em;white-space:nowrap">Snorp {CSS}</h1><figure style="width:42px;height:42px;flex-shrink:0"><img src="../logo.png" alt="Snorp logo" style="border-radius:8px"></figure></div><div class="col-2"><nav class="center" aria-label="Main navigation"><ul><li><a href="../index.html">Home</a></li><li><a href="../index.html#css-index">CSS Index</a></li><li><a href="../index.html#js-index">JS Index</a></li></ul></nav></div></div></div></header>
+    <main class="site-width pad-btm-3">
+        <section class="highlight" style="margin-top:1.5em"><p><a href="../index.html">Snorp CSS</a> / Documentation / Flippy</p><h2 style="font-size:1.8em">Flippy</h2><p>Build a card with front and back faces that turns over on hover.</p><p><strong>Type:</strong> CSS <strong>File:</strong> <code>flippy.css</code></p></section>
+        <nav aria-label="On this page" style="margin-top:1.5em"><ul style="display:flex;flex-wrap:wrap;gap:1em;list-style:none"><li><a href="#overview">Overview</a></li><li><a href="#installation">Installation</a></li><li><a href="#examples">Examples</a></li><li><a href="#reference">Reference</a></li><li><a href="#related">Related</a></li></ul></nav>
+        <section id="overview" style="margin-top:2em"><header><h2>Overview</h2></header><p>Flippy supplies the perspective, 3D transform, and hidden backface styles for a basic two-sided card.</p><ul><li>The card turns 180 degrees on hover.</li><li>Front and back faces share the card dimensions.</li><li>Colors, content, and dimensions can be customized with your own CSS.</li></ul></section>
+        <section id="installation" style="margin-top:2em"><header><h2>Installation</h2></header><p>Load Flippy in the page head.</p><pre><code>&lt;link rel="stylesheet" href="../css/flippy.css"&gt;</code></pre></section>
+        <section id="examples" style="margin-top:2em"><header><h2>Examples</h2></header><p>Hover over the card to reveal its back face.</p>
+            <div style="display:flex;justify-content:center;padding:1em"><div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front" style="display:grid;place-items:center"><strong>Front</strong></div><div class="flip-card-back" style="display:grid;place-items:center"><strong>Details on the back</strong></div></div></div></div>
+            <pre><code>&lt;div class="flip-card"&gt;
+    &lt;div class="flip-card-inner"&gt;
+        &lt;div class="flip-card-front"&gt;Front&lt;/div&gt;
+        &lt;div class="flip-card-back"&gt;Back&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            <p>The bundled effect is hover-based. Provide a keyboard- and touch-friendly interaction if the back contains essential information.</p>
+        </section>
+        <section id="reference" style="margin-top:2em"><header><h2>Reference</h2></header><div style="overflow-x:auto"><table><thead><tr><th scope="col">Class</th><th scope="col">Role</th></tr></thead><tbody><tr><td><code>.flip-card</code></td><td>Sets the card size and 3D perspective.</td></tr><tr><td><code>.flip-card-inner</code></td><td>Preserves the 3D faces and rotates on hover.</td></tr><tr><td><code>.flip-card-front</code></td><td>Front face, hidden when turned away.</td></tr><tr><td><code>.flip-card-back</code></td><td>Back face, rotated 180 degrees initially.</td></tr></tbody></table></div><p>Default card dimensions are 150 by 150 pixels; the transition lasts 0.6 seconds.</p></section>
+        <section id="related" style="margin-top:2em"><header><h2>Related</h2></header><ul><li><a href="Ribbon.html">Ribbon</a> - Add a corner badge to cards.</li><li><a href="Spaces.html">Spaces</a> - Space cards within a layout.</li></ul></section><p><a href="../index.html" class="btn">Back to Snorp CSS</a></p>
+    </main><footer><p>Snorp CSS &copy; 2026 - Modular CSS Layout Engine</p></footer>
+</body>
+</html>

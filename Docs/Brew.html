@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Compile inline and external CoffeeScript in the browser with Brew.js.">
+    <title>Brew | Snorp CSS</title>
+    <link rel="stylesheet" href="../css/flexi.css">
+    <link rel="stylesheet" href="../nonSnorpCSS/style.css">
+    <link rel="shortcut icon" href="../logo.png" type="image/x-icon">
+    <script src="../js/Brew.js"></script>
+</head>
+
+<body>
+    <header class="top-color">
+        <div class="site-width">
+            <div class="row">
+                <div class="col-1" style="display:flex;align-items:center;gap:.75em">
+                    <h1 style="font-size:1.5em;white-space:nowrap">Snorp {CSS}</h1>
+                    <figure style="width:42px;height:42px;flex-shrink:0"><img src="../logo.png" alt="Snorp logo"
+                            style="border-radius:8px"></figure>
+                </div>
+                <div class="col-2">
+                    <nav class="center" aria-label="Main navigation">
+                        <ul>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="../index.html#css-index">CSS Index</a></li>
+                            <li><a href="../index.html#js-index">JS Index</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="site-width pad-btm-3">
+        <section class="highlight" style="margin-top:1.5em">
+            <p><a href="../index.html">Snorp CSS</a> / Documentation / Brew</p>
+            <h2 style="font-size:1.8em">Brew</h2>
+            <p>Compile and run CoffeeScript snippets and files in the browser.</p>
+            <p><strong>Type:</strong> JavaScript <strong>File:</strong> <code>Brew.js</code></p>
+        </section>
+        <nav aria-label="On this page" style="margin-top:1.5em">
+            <ul style="display:flex;flex-wrap:wrap;gap:1em;list-style:none">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#examples">Examples</a></li>
+                <li><a href="#reference">Reference</a></li>
+                <li><a href="#related">Related</a></li>
+            </ul>
+        </nav>
+        <section id="overview" style="margin-top:2em">
+            <header>
+                <h2>Overview</h2>
+            </header>
+            <p>Brew detects CoffeeScript custom elements and script tags, fetches external source when needed, compiles
+                it in the browser, and executes the result in document order.</p>
+            <ul>
+                <li>Use an inline <code>&lt;coffee&gt;</code> block or point it at an external <code>.coffee</code>
+                    file.</li>
+                <li>Loads the pinned CoffeeScript browser compiler from jsDelivr by default.</li>
+                <li>Caches compiled output in local storage by default.</li>
+            </ul>
+        </section>
+        <section id="installation" style="margin-top:2em">
+            <header>
+                <h2>Installation</h2>
+            </header>
+            <p>Load Brew before the CoffeeScript elements or scripts that it should process.</p>
+            <pre><code>&lt;script src="../js/Brew.js"&gt;&lt;/script&gt;</code></pre>
+            <p>The default compiler is loaded from a CDN, so a network connection is needed until it is available in the
+                browser cache.</p>
+        </section>
+        <section id="examples" style="margin-top:2em">
+            <header>
+                <h2>Examples</h2>
+            </header>
+            <p>This inline CoffeeScript example updates the result after the browser compiler loads.</p>
+            <div style="padding:1em;background:#fff;border-left:4px solid var(--main-color);border-radius:4px">
+                <strong>Result:</strong> <span id="brew-result" aria-live="polite">Waiting for CoffeeScript to
+                    compile...</span>
+            </div>
+            <coffee>
+                document.getElementById("brew-result").textContent = "CoffeeScript compiled and ran."
+            </coffee>
+            <pre><code>&lt;coffee&gt;
+document.getElementById("brew-result").textContent = "CoffeeScript compiled and ran."
+&lt;/coffee&gt;</code></pre>
+            <p>External source can be loaded with <code>&lt;coffee src="app.coffee"&gt;&lt;/coffee&gt;</code>.</p>
+        </section>
+        <section id="reference" style="margin-top:2em">
+            <header>
+                <h2>Reference</h2>
+            </header>
+            <div style="overflow-x:auto">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Feature</th>
+                            <th scope="col">Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>&lt;coffee&gt;...&lt;/coffee&gt;</code></td>
+                            <td>Compile inline CoffeeScript.</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;coffee src="file.coffee"&gt;</code></td>
+                            <td>Fetch and compile external CoffeeScript.</td>
+                        </tr>
+                        <tr>
+                            <td><code>data-compiler</code></td>
+                            <td>Override the compiler URL on Brew's script element.</td>
+                        </tr>
+                        <tr>
+                            <td><code>data-cache="false"</code></td>
+                            <td>Disable the compiled-output cache.</td>
+                        </tr>
+                        <tr>
+                            <td><code>CoffeeLoader.compile()</code>, <code>run()</code>, <code>ready</code></td>
+                            <td>Compile manually, execute source, or wait for startup tasks.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Serve this page over HTTP instead of opening it with <code>file://</code>: the relative
+                <code>../js/Brew.js</code> path will not resolve as a local file, and external CoffeeScript sources require
+                fetch access.</p>
+        </section>
+        <section id="related" style="margin-top:2em">
+            <header>
+                <h2>Related</h2>
+            </header>
+            <ul>
+                <li><a href="Scroller.html">Scroller</a> - Add smooth in-page navigation.</li>
+                <li><a href="A11y.html">A11y Accessibility</a> - Add reading preference controls.</li>
+            </ul>
+        </section>
+        <p><a href="../index.html" class="btn">Back to Snorp CSS</a></p>
+    </main>
+    <footer>
+        <p>Snorp CSS &copy; 2026 - Modular CSS Layout Engine</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,324 @@
+:root {
+    --color-dark: #2F372C;
+    --color-light: #F6EFEE;
+    --main-color: #F2A359;
+    --color-link: #8EB8E5;
+    --site-width: 1100px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+figure img:has(+ figcaption) {
+    height: calc(100% - 1em);
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--color-dark);
+    background-color: var(--color-light);
+    line-height: 1.5;
+}
+
+body > header {
+    background-color: var(--main-color);
+    font-size: 1.1em;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+body > header strong,
+body > header em {
+    display: block;
+}
+
+/* Flexi layout helper overrides & responsive grid */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    gap: 0.5em;
+}
+
+.col-1 {
+    flex: 1;
+    min-width: 160px;
+    padding: 0.5em;
+}
+
+.col-2 {
+    flex: 2;
+    min-width: 240px;
+    padding: 0.5em;
+}
+
+.site-width {
+    max-width: var(--site-width);
+    margin: 0 auto;
+    padding: 1.25em;
+}
+
+/* Fixed & Styled Navigation */
+body > header nav ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    gap: 0.5em;
+}
+
+body > header nav ul li a {
+    color: var(--color-dark);
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 0.5em 1em;
+    display: block;
+    border-bottom: 4px solid transparent;
+    text-align: center;
+    border-radius: 6px 6px 0 0;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+body > header nav ul li a:hover {
+    border-bottom-color: var(--color-dark);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+nav.center > ul {
+    justify-content: center;
+}
+
+/* Minimal Custom Search Bar Styles */
+.search-box {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-light);
+    border: 2px solid var(--color-dark);
+    border-radius: 25px;
+    padding: 0.25em 0.5em 0.25em 0.8em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.search-box:focus-within {
+    border-color: var(--color-dark);
+    box-shadow: 0 0 0 3px rgba(47, 55, 44, 0.25);
+}
+
+.search-box input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 0.9em;
+    color: var(--color-dark);
+    width: 100%;
+    font-weight: 500;
+}
+
+.search-box input::placeholder {
+    color: #778373;
+}
+
+.search-box button {
+    background-color: var(--color-link);
+    border: none;
+    color: var(--color-dark);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.search-box button:hover {
+    opacity: 0.85;
+    transform: scale(1.05);
+}
+
+.search-box button svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Buttons & Utility Styles */
+.btn {
+    background-color: var(--color-link);
+    padding: 0.8em 1.4em;
+    display: inline-block;
+    color: var(--color-dark);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+    margin-top: 1em;
+    border: none;
+}
+
+.btn:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+.highlight {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    padding: 1.5em;
+    border-radius: 12px;
+}
+
+.pad-btm-3 {
+    padding-bottom: 3em;
+}
+
+/* Cards Grid */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5em;
+}
+
+.cards > section {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cards > section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.cards > section > figure {
+    height: 200px;
+}
+
+.cards > section > div {
+    padding: 1.25em;
+}
+
+.cards > section > div > header {
+    color: var(--color-dark);
+    border-bottom: 2px solid var(--main-color);
+    margin-bottom: 0.75em;
+    padding-bottom: 0.5em;
+}
+
+/* Index List Styling */
+.index-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1em;
+    margin-top: 1em;
+    perspective: 1000px;
+}
+
+.index-card {
+    display: block;
+    background: white;
+    color: inherit;
+    padding: 1.2em;
+    border-radius: 8px;
+    border-left: 4px solid var(--color-link);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), border-left-color 0.25s ease;
+    text-decoration: none;
+    will-change: transform, box-shadow;
+}
+
+.index-card:focus-visible {
+    outline: 3px solid var(--color-link);
+    outline-offset: 3px;
+}
+
+.index-card:hover {
+    border-left-color: #0066cc;
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15), 0 6px 12px rgba(142, 184, 229, 0.3);
+}
+
+.index-card h4 {
+    color: var(--color-dark);
+    margin-bottom: 0.4em;
+}
+
+.index-card code {
+    font-size: 0.85em;
+    background: var(--color-light);
+    color: var(--color-dark);
+    padding: 0.25em 0.5em;
+    border-radius: 4px;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+/* Blue hover state on index keys */
+.index-card code:hover {
+    background-color: var(--color-link);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(142, 184, 229, 0.4);
+}
+
+footer {
+    text-align: center;
+    font-weight: bold;
+    padding: 2em;
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    margin-top: 3em;
+}
+
+/* Mobile navbar & layout adjustments */
+@media (max-width: 800px) {
+    body > header nav ul {
+        flex-direction: column;
+    }
+
+    body > header nav ul li a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .col-1, .col-2 {
+        width: 100%;
+    }
+}
+a{
+    color:var(--main-color);
+}

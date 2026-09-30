@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Add smooth scrolling behavior to in-page anchor links with Scroller.js."><title>Scroller | Snorp CSS</title>
+    <link rel="stylesheet" href="../css/flexi.css"><link rel="stylesheet" href="../nonSnorpCSS/style.css"><link rel="shortcut icon" href="../logo.png" type="image/x-icon">
+    <script src="../js/Scroller.js"></script>
+</head>
+<body>
+<header class="top-color"><div class="site-width"><div class="row"><div class="col-1" style="display:flex;align-items:center;gap:.75em"><h1 style="font-size:1.5em;white-space:nowrap">Snorp {CSS}</h1><figure style="width:42px;height:42px;flex-shrink:0"><img src="../logo.png" alt="Snorp logo" style="border-radius:8px"></figure></div><div class="col-2"><nav class="center" aria-label="Main navigation"><ul><li><a href="../index.html">Home</a></li><li><a href="../index.html#css-index">CSS Index</a></li><li><a href="../index.html#js-index">JS Index</a></li></ul></nav></div></div></div></header>
+<main class="site-width pad-btm-3">
+<section class="highlight" style="margin-top:1.5em"><p><a href="../index.html">Snorp CSS</a> / Documentation / Scroller</p><h2 style="font-size:1.8em">Scroller</h2><p>Smoothly scroll to an in-page target when a hash link is clicked.</p><p><strong>Type:</strong> JavaScript <strong>File:</strong> <code>Scroller.js</code></p></section>
+<nav aria-label="On this page" style="margin-top:1.5em"><ul style="display:flex;flex-wrap:wrap;gap:1em;list-style:none"><li><a href="#overview">Overview</a></li><li><a href="#installation">Installation</a></li><li><a href="#examples">Examples</a></li><li><a href="#reference">Reference</a></li><li><a href="#related">Related</a></li></ul></nav>
+<section id="overview" style="margin-top:2em"><header><h2>Overview</h2></header><p>Scroller listens for clicks on links containing a fragment identifier. If the matching element exists, it prevents the instant jump, scrolls the target into view, and updates the URL fragment.</p><ul><li>Works with links to element IDs or named anchors.</li><li>Uses smooth scrolling and aligns the target to the start.</li><li>Leaves ordinary links and missing targets alone.</li></ul></section>
+<section id="installation" style="margin-top:2em"><header><h2>Installation</h2></header><p>Load Scroller on pages that contain in-page anchor links.</p><pre><code>&lt;script src="../js/Scroller.js"&gt;&lt;/script&gt;</code></pre></section>
+<section id="examples" style="margin-top:2em"><header><h2>Examples</h2></header><p>Click the link to smoothly reach the sample target.</p><p><a class="btn" href="#scroller-demo-target">Jump to the sample target</a></p><div id="scroller-demo-target" style="margin-top:8em;padding:1.5em;background:#fff;border-left:4px solid var(--main-color);scroll-margin-top:1em"><h3>Target reached</h3><p>This element has the ID referenced by the link.</p></div><pre><code>&lt;a href="#pricing"&gt;View pricing&lt;/a&gt;
+...
+&lt;section id="pricing"&gt;...&lt;/section&gt;</code></pre></section>
+<section id="reference" style="margin-top:2em"><header><h2>Reference</h2></header><div style="overflow-x:auto"><table><thead><tr><th scope="col">Behavior</th><th scope="col">Details</th></tr></thead><tbody><tr><td>Accepted targets</td><td>Element IDs and named anchors matching the fragment.</td></tr><tr><td>Scroll</td><td><code>scrollIntoView({ behavior: 'smooth', block: 'start' })</code>.</td></tr><tr><td>History</td><td>Writes the new hash with <code>history.pushState</code>.</td></tr></tbody></table></div><p>All hash links on a page with this script are handled, including documentation navigation links.</p></section>
+<section id="related" style="margin-top:2em"><header><h2>Related</h2></header><ul><li><a href="LazyLoader.html">Lazy Loader</a> - Defer offscreen media.</li><li><a href="Flexi.html">Flexi</a> - Build responsive page sections.</li></ul></section><p><a href="../index.html" class="btn">Back to Snorp CSS</a></p>
+</main><footer><p>Snorp CSS &copy; 2026 - Modular CSS Layout Engine</p></footer>
+</body>
+</html>

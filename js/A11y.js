@@ -1,7 +1,10 @@
 /*!
- * a11y-autoload.js  v1.0.0
+ * a11y-autoload.js  v1.2.0
  * Drop-in accessibility layer that loads on every page, remembers each visitor's
  * settings across pages and tabs, and supports per-page overrides.
+ *
+ * NOTE: This script was made with AI. The settings panel shows visitors a warning
+ * saying so (wording can be changed with `aiNotice`, below).
  *
  * ── Install ────────────────────────────────────────────────────────────────
  * Put ONE tag in <head> of every page (or your shared layout). Do not add
@@ -13,6 +16,14 @@
  *       hotkey: 'Alt+Shift+A',         // single letter/digit + modifiers, or '' to disable
  *       scaleMethod: 'font',           // 'font' (rem-based sites) | 'zoom' (px-based sites)
  *       defaults: { focusRing: true }, // site-wide starting values
+ *       fontBase: 'https://cdn.jsdelivr.net/npm/@fontsource/opendyslexic@5.3.0/files/',
+ *                                      // where OpenDyslexic loads from (see "Fonts" below)
+ *       aiNotice: 'This accessibility tool was made with AI. ...', // warning text in the panel
+ *       popup: 'session',              // tip bubble by the button: 'session' (once per visit) |
+ *                                      //   'once' (once ever) | 'always' | false
+ *       popupSeconds: 10,              // how long the tip stays up
+ *       popupText: 'Change text size, contrast, fonts and more.',
+ *       fontCache: true,               // keep OpenDyslexic in localStorage (see "Fonts")
  *       pageRules: [
  *         // Page A: start larger and calmer. The visitor can still change it.
  *         { match: '/docs/**', settings: { textScale: 1.2, font: 'sans' } },
@@ -23,6 +34,22 @@
  *     };
  *   </script>
  *   <script src="/a11y-autoload.js"></script>
+ *
+ * ── Fonts ──────────────────────────────────────────────────────────────────
+ * The "OpenDyslexic" font option loads OpenDyslexic (SIL Open Font License 1.1)
+ * from the jsDelivr CDN by default. Nothing is downloaded until a visitor actually
+ * turns the font on. The first time the font is found, the regular and bold files are
+ * also saved in the visitor's localStorage (about 300 KB), so every later page loads
+ * it with no network request. Turn that off with fontCache: false. Italic files are
+ * only fetched by the browser if a page uses italic text.
+ *   • If your site has a Content-Security-Policy, allow the font host:
+ *       font-src    https://cdn.jsdelivr.net   (showing the font)
+ *       connect-src https://cdn.jsdelivr.net   (saving it to localStorage; without this
+ *                                               the font still works, it just isn't saved)
+ *   • To self-host instead, copy the opendyslexic-latin-{400,700}-{normal,italic}
+ *     .woff2/.woff files from the @fontsource/opendyslexic npm package to a folder
+ *     on your site and set  fontBase: '/fonts/'
+ *   • To load nothing (use only a copy installed on the visitor's device): fontBase: null
  *
  * ── Precedence (lowest → highest) ──────────────────────────────────────────
  *   built-in defaults → OS preferences → config.defaults → non-forced pageRules
@@ -49,6 +76,11 @@
 
   /* ───────────────────────── Configuration ───────────────────────── */
 
+  const TITLE = 'A11y Accessibility';
+  const DEFAULT_POPUP_TEXT = 'Change text size, contrast, fonts and more.';
+  const DEFAULT_AI_NOTICE =
+    'This accessibility tool was made with AI. It may contain mistakes and might not work correctly on every page or device.';
+
   const script = doc.currentScript;
   const ds = (script && script.dataset) || {};
   const cfg = Object.assign(
@@ -61,6 +93,16 @@
       defaults: {},
       pageRules: [],
       ui: true,
+      // Where the OpenDyslexic font files are loaded from. Must end in "/" (added if missing).
+      fontBase: 'https://cdn.jsdelivr.net/npm/@fontsource/opendyslexic@5.3.0/files/',
+      // Warning shown at the top of the settings panel.
+      aiNotice: DEFAULT_AI_NOTICE,
+      // Small tip beside the button: 'session' (once per visit), 'once' (once ever), 'always', or false.
+      popup: 'session',
+      popupSeconds: 10,
+      popupText: DEFAULT_POPUP_TEXT,
+      // Keep the OpenDyslexic files in localStorage so later pages don't download them again.
+      fontCache: true,
       // Elements the text/font/contrast overrides leave alone (icon fonts, code, SVG).
       excludeSelector:
         'svg, svg *, script, style, code, pre, kbd, samp, [class*="icon" i], [class*="fa-"], .material-icons, .material-symbols-outlined',
@@ -70,6 +112,7 @@
   if (ds.storageKey) cfg.storageKey = ds.storageKey;
   if (ds.position) cfg.position = ds.position;
   if (ds.scaleMethod) cfg.scaleMethod = ds.scaleMethod;
+  if (ds.fontBase) cfg.fontBase = ds.fontBase;
   if (ds.ui === 'false') cfg.ui = false;
 
   /* ───────────────────────── Settings schema ───────────────────────── */
@@ -212,6 +255,112 @@
   const NOT = EX ? `:where(:not(${EX}))` : '';
   const NOT_MEDIA = `:where(:not(${[EX, 'img, video, canvas, picture, iframe'].filter(Boolean).join(', ')}))`;
 
+  // OpenDyslexic (SIL Open Font License 1.1).
+  // Regular and bold are fetched by script (ensureFont, below) so they can be kept in
+  // localStorage. Italics, and every face when scripted loading isn't possible, are plain
+  // @font-face rules: the browser only downloads those if text on the page uses them.
+  const FACES = [
+    { w: 400, s: 'normal', local: ['OpenDyslexic', 'OpenDyslexic-Regular'] },
+    { w: 700, s: 'normal', local: ['OpenDyslexic Bold', 'OpenDyslexic-Bold'] },
+    { w: 400, s: 'italic', local: ['OpenDyslexic Italic', 'OpenDyslexic-Italic'] },
+    { w: 700, s: 'italic', local: ['OpenDyslexic Bold Italic', 'OpenDyslexic-BoldItalic'] },
+  ];
+
+  const fontBase = (() => {
+    const b = typeof cfg.fontBase === 'string' ? cfg.fontBase.replace(/["'\\()\s]/g, '') : '';
+    return b ? (b.endsWith('/') ? b : b + '/') : '';
+  })();
+  const faceUrl = (f, ext) => `${fontBase}opendyslexic-latin-${f.w}-${f.s}.${ext}`;
+  const faceCSS = (f) =>
+    `@font-face { font-family: "OpenDyslexic"; font-style: ${f.s}; font-weight: ${f.w}; font-display: swap; ` +
+    `src: ${f.local.map((n) => `local("${n}")`).join(', ')}, url("${faceUrl(f, 'woff2')}") format("woff2"), ` +
+    `url("${faceUrl(f, 'woff')}") format("woff"); }`;
+
+  // Can we fetch the font ourselves and keep it in localStorage?
+  const CAN_CACHE = !!(fontBase && cfg.fontCache !== false && win.FontFace && doc.fonts && win.fetch && win.Promise);
+  const scripted = (f) => CAN_CACHE && f.s === 'normal';
+  const fontFaceCSS = () => (fontBase ? FACES.filter((f) => !scripted(f)).map(faceCSS).join('\n') : '');
+
+  const fontKey = (f) => `${cfg.storageKey}:font:${f.w}-${f.s}`;
+  const toB64 = (buf) => {
+    const bytes = new Uint8Array(buf);
+    let bin = '';
+    for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+    return win.btoa(bin);
+  };
+  const fromB64 = (b64) => {
+    const bin = win.atob(b64);
+    const bytes = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return bytes.buffer;
+  };
+  const readFont = (f) => {
+    try {
+      const o = JSON.parse(win.localStorage.getItem(fontKey(f)) || 'null');
+      if (o && o.u === faceUrl(f, 'woff2') && typeof o.d === 'string') return fromB64(o.d);
+    } catch (e) {}
+    return null;
+  };
+  const writeFont = (f, buf) => {
+    try {
+      win.localStorage.setItem(fontKey(f), JSON.stringify({ u: faceUrl(f, 'woff2'), d: toB64(buf) }));
+    } catch (e) {} // storage full or blocked: the font still works, it just isn't kept
+  };
+  const dropFont = (f) => {
+    try {
+      win.localStorage.removeItem(fontKey(f));
+    } catch (e) {}
+  };
+
+  let fontStarted = false;
+
+  // Runs once, the first time the OpenDyslexic option is active on this page.
+  // Saved copy found → use it, no network. Otherwise download it, save it, use it.
+  // Anything fails (offline, CSP, bad file) → hand that face to the browser as a normal @font-face.
+  const ensureFont = () => {
+    if (fontStarted || !CAN_CACHE) return;
+    fontStarted = true;
+    FACES.filter(scripted).forEach((f) => {
+      const show = (buf) => {
+        const ff = new win.FontFace('OpenDyslexic', buf, { weight: String(f.w), style: f.s, display: 'swap' });
+        doc.fonts.add(ff);
+        return ff.load();
+      };
+      const download = () =>
+        win
+          .fetch(faceUrl(f, 'woff2'), { mode: 'cors', credentials: 'omit' })
+          .then((r) => {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.arrayBuffer();
+          })
+          .then((buf) => {
+            writeFont(f, buf);
+            return show(buf);
+          });
+      const fallback = () => {
+        const st = doc.createElement('style');
+        if (script && script.nonce) st.nonce = script.nonce;
+        st.textContent = faceCSS(f);
+        (doc.head || root).appendChild(st);
+      };
+      const saved = readFont(f);
+      if (saved) {
+        try {
+          show(saved)
+            .catch(() => {
+              dropFont(f); // saved copy was damaged: replace it
+              return download();
+            })
+            .catch(fallback);
+          return;
+        } catch (e) {
+          dropFont(f);
+        }
+      }
+      download().catch(fallback);
+    });
+  };
+
   const cursorSvg = (fill) =>
     'data:image/svg+xml,' +
     encodeURIComponent(
@@ -240,6 +389,7 @@ html.a11y-ws body *${NOT} { word-spacing: var(--a11y-ws) !important; }
 html.a11y-left body :is(p, li, dd, dt, blockquote, h1, h2, h3, h4, h5, h6, td, th, figcaption, article, section, div) { text-align: left !important; }
 
 /* fonts */
+${fontFaceCSS()}
 html.a11y-font-dyslexia body *${NOT} { font-family: "OpenDyslexic", "Atkinson Hyperlegible", "Lexend", "Comic Sans MS", "Trebuchet MS", Verdana, sans-serif !important; }
 html.a11y-font-sans body *${NOT} { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important; }
 
@@ -335,6 +485,7 @@ html.a11y-motion *, html.a11y-motion *::before, html.a11y-motion *::after {
 
     setGuide(s.readingGuide);
     if (s.reduceMotion) pauseVideos();
+    if (s.font === 'dyslexia') ensureFont();
   };
 
   /* ───────────────────────── Public operations ───────────────────────── */
@@ -398,7 +549,7 @@ html.a11y-motion *, html.a11y-motion *::before, html.a11y-motion *::after {
         { key: 'lineHeight', label: 'Line spacing', type: 'select', options: [[0, 'Site default'], [1.5, 'Comfortable'], [1.8, 'Wide'], [2.2, 'Extra wide']] },
         { key: 'letterSpacing', label: 'Letter spacing', type: 'select', options: [[0, 'Site default'], [0.05, 'Slight'], [0.1, 'Wide'], [0.16, 'Extra wide']] },
         { key: 'wordSpacing', label: 'Word spacing', type: 'select', options: [[0, 'Site default'], [0.1, 'Slight'], [0.2, 'Wide'], [0.3, 'Extra wide']] },
-        { key: 'font', label: 'Font', type: 'select', options: [['off', 'Site default'], ['dyslexia', 'Dyslexia-friendly'], ['sans', 'Plain sans-serif']] },
+        { key: 'font', label: 'Font', type: 'select', options: [['off', 'Site default'], ['dyslexia', 'OpenDyslexic'], ['sans', 'Plain sans-serif']] },
         { key: 'alignLeft', label: 'Left-align text', type: 'switch' },
       ],
     },
@@ -430,12 +581,12 @@ html.a11y-motion *, html.a11y-motion *::before, html.a11y-motion *::after {
 *, *::before, *::after { box-sizing: border-box; }
 [hidden] { display: none !important; }
 .wrap {
-  --bg: #fff; --fg: #15181f; --mut: #556070; --line: #d3d9e3; --acc: #14508c; --accfg: #fff; --surf: #f2f5f9;
+  --bg: #fff; --fg: #15181f; --mut: #556070; --line: #d3d9e3; --acc: #14508c; --accfg: #fff; --surf: #f2f5f9; --warn: #b45309;
   position: fixed; z-index: 2147483647; width: 48px; height: 48px; color: var(--fg);
   font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 @media (prefers-color-scheme: dark) {
-  .wrap { --bg: #171b24; --fg: #eef1f7; --mut: #a6b0c3; --line: #2e3647; --acc: #7fb2f0; --accfg: #08111f; --surf: #1f2532; }
+  .wrap { --bg: #171b24; --fg: #eef1f7; --mut: #a6b0c3; --line: #2e3647; --acc: #7fb2f0; --accfg: #08111f; --surf: #1f2532; --warn: #f5b942; }
 }
 .wrap[data-v="bottom"] { bottom: calc(16px + env(safe-area-inset-bottom, 0px)); }
 .wrap[data-v="top"] { top: calc(16px + env(safe-area-inset-top, 0px)); }
@@ -461,10 +612,32 @@ html.a11y-motion *, html.a11y-motion *::before, html.a11y-motion *::after {
 .wrap[data-h="right"] .panel { right: 0; }
 .wrap[data-h="left"] .panel { left: 0; }
 
+.pop {
+  position: absolute; width: 250px; max-width: calc(100vw - 32px); padding: 12px 40px 12px 14px;
+  background: var(--bg); color: var(--fg); border: 1px solid var(--line); border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, .28); font-size: 14px; animation: pop-in .25s ease-out;
+}
+.pop p { margin: 0; }
+.pop-t { font-weight: 650; }
+.pop::after { content: ""; position: absolute; width: 12px; height: 12px; background: var(--bg); transform: rotate(45deg); }
+.wrap[data-v="bottom"] .pop { bottom: 60px; }
+.wrap[data-v="top"] .pop { top: 60px; }
+.wrap[data-h="right"] .pop { right: 0; }
+.wrap[data-h="left"] .pop { left: 0; }
+.wrap[data-v="bottom"] .pop::after { bottom: -7px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.wrap[data-v="top"] .pop::after { top: -7px; border-left: 1px solid var(--line); border-top: 1px solid var(--line); }
+.wrap[data-h="right"] .pop::after { right: 18px; }
+.wrap[data-h="left"] .pop::after { left: 18px; }
+.px { font: inherit; color: inherit; background: none; border: 0; border-radius: 8px; position: absolute; top: 4px; right: 4px; width: 32px; height: 32px; cursor: pointer; }
+.px:hover { background: var(--surf); }
+@keyframes pop-in { from { opacity: 0; } to { opacity: 1; } }
+
 .hd { position: sticky; top: 0; z-index: 1; background: var(--bg); display: flex; align-items: center; justify-content: space-between; padding: 14px 0 10px; }
 h2 { margin: 0; font-size: 18px; font-weight: 650; }
 fieldset { border: 0; margin: 0 0 14px; padding: 0; min-width: 0; }
 legend { padding: 0; margin-bottom: 4px; font-size: 14px; font-weight: 650; color: var(--mut); }
+
+.ai { margin: 0 0 14px; padding: 10px 10px 10px 12px; font-size: 14px; background: var(--surf); border: 1px solid var(--line); border-left: 4px solid var(--warn); border-radius: 8px; }
 
 .scope { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .scope legend { grid-column: 1 / -1; }
@@ -492,7 +665,7 @@ button:disabled, select:disabled, input:disabled { opacity: .5; cursor: not-allo
 .ft { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
 .sr { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
-@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 @media (forced-colors: active) { .sw::after { background: CanvasText; } .sw:checked { background: Highlight; } }`;
 
   const h = (tag, props, ...kids) => {
@@ -532,11 +705,17 @@ button:disabled, select:disabled, input:disabled { opacity: .5; cursor: not-allo
       <path d="M4 8.4l8 1.6 8-1.6v2.1l-5.5 1.2v3.2l2 6.6h-2.2L12 15.5 9.7 21.5H7.5l2-6.6v-3.2L4 10.5z"/>
     </svg>
   </button>
-  <section class="panel" id="panel" role="dialog" aria-labelledby="ttl" hidden>
+  <div class="pop" hidden>
+    <p class="pop-t"></p>
+    <p class="pop-b"></p>
+    <button type="button" class="px" aria-label="Dismiss tip">✕</button>
+  </div>
+  <section class="panel" id="panel" role="dialog" aria-labelledby="ttl" aria-describedby="ai-note" hidden>
     <div class="hd">
-      <h2 id="ttl">Accessibility</h2>
+      <h2 id="ttl">${TITLE}</h2>
       <button type="button" class="x" aria-label="Close accessibility settings">✕</button>
     </div>
+    <p class="ai" id="ai-note"><strong>Warning:</strong> <span class="ai-txt"></span></p>
     <fieldset class="scope">
       <legend>Apply changes to</legend>
       <label><input type="radio" name="scope" value="global"><span>All pages</span></label>
@@ -557,10 +736,19 @@ button:disabled, select:disabled, input:disabled { opacity: .5; cursor: not-allo
     const wrap = $('.wrap');
     const fab = $('.fab');
     const panel = $('.panel');
+    const pop = $('.pop');
     const note = $('.note');
     const live = $('.sr');
     const radios = [...sr.querySelectorAll('input[name="scope"]')];
     const controls = [];
+
+    // Set as text (not HTML) so a custom notice can't inject markup.
+    $('.ai-txt').textContent =
+      typeof cfg.aiNotice === 'string' && cfg.aiNotice.trim() ? cfg.aiNotice.trim() : DEFAULT_AI_NOTICE;
+
+    $('.pop-t').textContent = TITLE;
+    $('.pop-b').textContent =
+      typeof cfg.popupText === 'string' && cfg.popupText.trim() ? cfg.popupText.trim() : DEFAULT_POPUP_TEXT;
 
     const initial = resolve();
     let uiScope = Object.keys(clean(initial.store.pages[initial.key])).length ? 'page' : 'global';
@@ -622,7 +810,60 @@ button:disabled, select:disabled, input:disabled { opacity: .5; cursor: not-allo
       controls.forEach((c) => c.update(r.settings[c.key], locked.has(c.key)));
     };
 
+    // Tip bubble beside the button. Shows on page load (per the `popup` setting), stays for
+    // `popupSeconds`, pauses while hovered or focused, and closes on ✕ or when the panel opens.
+    const popMode =
+      cfg.popup === false || cfg.popup === null || cfg.popup === 'never'
+        ? null
+        : ['always', 'once', 'session'].includes(cfg.popup) ? cfg.popup : 'session';
+    const popKey = cfg.storageKey + ':tip';
+    const popStore = () => (popMode === 'once' ? win.localStorage : win.sessionStorage);
+    const popSeen = () => {
+      try {
+        return popMode !== 'always' && !!popStore().getItem(popKey);
+      } catch (e) {
+        return false;
+      }
+    };
+    const popMark = () => {
+      try {
+        if (popMode !== 'always') popStore().setItem(popKey, '1');
+      } catch (e) {}
+    };
+    const secs = Number(cfg.popupSeconds);
+    const popMs = (Number.isFinite(secs) && secs > 0 ? secs : 10) * 1000;
+    let popTimer = 0;
+    let popLeft = 0;
+    let popStart = 0;
+
+    const hidePop = () => {
+      const hadFocus = pop.contains(sr.activeElement);
+      clearTimeout(popTimer);
+      popTimer = 0;
+      pop.hidden = true;
+      if (hadFocus) fab.focus();
+    };
+    const popResume = () => {
+      if (pop.hidden || popTimer) return;
+      popStart = Date.now();
+      popTimer = setTimeout(hidePop, Math.max(popLeft, Math.min(popMs, 2000)));
+    };
+    const popPause = () => {
+      if (!popTimer) return;
+      clearTimeout(popTimer);
+      popTimer = 0;
+      popLeft -= Date.now() - popStart;
+    };
+    const showPop = () => {
+      if (!popMode || !panel.hidden || popSeen()) return;
+      popMark();
+      popLeft = popMs;
+      pop.hidden = false;
+      popResume();
+    };
+
     const openPanel = () => {
+      hidePop();
       panel.hidden = false;
       fab.setAttribute('aria-expanded', 'true');
       sync();
@@ -653,7 +894,13 @@ button:disabled, select:disabled, input:disabled { opacity: .5; cursor: not-allo
 
     fab.addEventListener('click', togglePanel);
     $('.x').addEventListener('click', closePanel);
+    $('.px').addEventListener('click', hidePop);
+    pop.addEventListener('pointerenter', popPause);
+    pop.addEventListener('pointerleave', popResume);
+    pop.addEventListener('focusin', popPause);
+    pop.addEventListener('focusout', popResume);
     wrap.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !pop.hidden) hidePop();
       if (e.key === 'Escape' && !panel.hidden) {
         e.stopPropagation();
         closePanel();
@@ -686,7 +933,7 @@ button:disabled, select:disabled, input:disabled { opacity: .5; cursor: not-allo
     });
 
     root.appendChild(host);
-    ui = { open: openPanel, close: closePanel, toggle: togglePanel, sync };
+    ui = { open: openPanel, close: closePanel, toggle: togglePanel, sync, hint: showPop };
     sync();
   };
 
@@ -745,7 +992,7 @@ button:disabled, select:disabled, input:disabled { opacity: .5; cursor: not-allo
 
   win.A11y = {
     __loaded: true,
-    version: '1.0.0',
+    version: '1.2.0',
     get: () => resolve().settings,
     set,
     reset,
@@ -761,6 +1008,7 @@ button:disabled, select:disabled, input:disabled { opacity: .5; cursor: not-allo
 
   const ready = () => {
     mountUI();
+    if (ui) ui.hint();
     if (resolve().settings.reduceMotion) pauseVideos();
   };
   if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', ready, { once: true });

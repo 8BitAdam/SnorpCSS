@@ -1,0 +1,1 @@
+document.addEventListener("click",t=>{const e=t.target.closest("a");if(!e)return;const n=e.getAttribute("href");if(!n||!n.includes("#"))return;const o=n.split("#")[1];if(!o)return;const r=document.getElementById(o)||document.getElementsByName(o)[0];r&&(t.preventDefault(),r.scrollIntoView({behavior:"smooth",block:"start"}),history.pushState(null,null,`#${o}`))});
