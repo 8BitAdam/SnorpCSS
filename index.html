@@ -8,6 +8,7 @@
     <script src="js/A11y.js"></script>
     <script src="js/LazyLoader.js"></script>
     <script src="js/Scroller.js"></script>
+    <script src="js/Search.js" defer></script>
     <!-- Local Snorp CSS stylesheets -->
     <link rel="stylesheet" href="css/flexi.css">
     <link rel="stylesheet" href="css/glass.css">
@@ -46,14 +47,14 @@
                 </div>
 <!-- Minimal Styled Search Bar Column -->
 <div class="col-1">
-    <form class="search-box" action="#0" method="get" onsubmit="event.preventDefault();" style="display: flex; align-items: center; gap: 0.4em;">
+    <form id="asset-search" class="search-box" action="#0" method="get" style="display: flex; align-items: center; gap: 0.4em;">
         <!-- Dropdown added before input -->
         <select name="type" aria-label="Filter search type" style="padding: 0.4em 0.6em; border-radius: 6px; border: 1px solid #ccc; background-color: #fff; font-size: 0.9em; cursor: pointer;">
             <option value="css">CSS</option>
             <option value="js">JS</option>
         </select>
 
-        <input type="search" placeholder="Search Snorp..." aria-label="Search site content">
+        <input type="search" name="q" placeholder="Search Snorp..." aria-label="Search site content" required>
         <button type="submit" aria-label="Submit Search">
             <svg viewBox="0 0 24 24">
                 <circle cx="11" cy="11" r="8"></circle>
@@ -61,6 +62,7 @@
             </svg>
         </button>
     </form>
+    <p id="search-status" role="status" aria-live="polite" hidden></p>
 </div>
 
             </div>

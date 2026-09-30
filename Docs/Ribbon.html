@@ -1,23 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Place a small rotated ribbon badge on a component with Ribbon CSS."><title>Ribbon | Snorp CSS</title>
-    <link rel="stylesheet" href="../css/flexi.css"><link rel="stylesheet" href="../css/ribbon.css"><link rel="stylesheet" href="../nonSnorpCSS/style.css"><link rel="shortcut icon" href="../logo.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Place a small rotated ribbon badge on a component with Ribbon CSS.">
+    <title>Ribbon | Snorp CSS</title>
+    <link rel="stylesheet" href="../css/flexi.css">
+    <link rel="stylesheet" href="../css/ribbon.css">
+    <link rel="stylesheet" href="../nonSnorpCSS/style.css">
+    <link rel="shortcut icon" href="../logo.png" type="image/x-icon">
+    <script src="../js/A11y.js"></script>
 </head>
+
 <body>
-<header class="top-color"><div class="site-width"><div class="row"><div class="col-1" style="display:flex;align-items:center;gap:.75em"><h1 style="font-size:1.5em;white-space:nowrap">Snorp {CSS}</h1><figure style="width:42px;height:42px;flex-shrink:0"><img src="../logo.png" alt="Snorp logo" style="border-radius:8px"></figure></div><div class="col-2"><nav class="center" aria-label="Main navigation"><ul><li><a href="../index.html">Home</a></li><li><a href="../index.html#css-index">CSS Index</a></li><li><a href="../index.html#js-index">JS Index</a></li></ul></nav></div></div></div></header>
-<main class="site-width pad-btm-3">
-<section class="highlight" style="margin-top:1.5em"><p><a href="../index.html">Snorp CSS</a> / Documentation / Ribbon</p><h2 style="font-size:1.8em">Ribbon</h2><p>Add a rotated badge at the top-right of a component.</p><p><strong>Type:</strong> CSS <strong>File:</strong> <code>ribbon.css</code></p></section>
-<nav aria-label="On this page" style="margin-top:1.5em"><ul style="display:flex;flex-wrap:wrap;gap:1em;list-style:none"><li><a href="#overview">Overview</a></li><li><a href="#installation">Installation</a></li><li><a href="#examples">Examples</a></li><li><a href="#reference">Reference</a></li><li><a href="#related">Related</a></li></ul></nav>
-<section id="overview" style="margin-top:2em"><header><h2>Overview</h2></header><p>Ribbon styles a positioned host and one absolutely positioned badge. Put the badge inside the host so it is placed relative to that component.</p><ul><li><code>.ribbon-able</code> establishes the positioning context.</li><li><code>.ribbon-ribbonSNor</code> styles and positions the badge.</li><li>The badge content and host design are yours to customize.</li></ul></section>
-<section id="installation" style="margin-top:2em"><header><h2>Installation</h2></header><p>Load Ribbon in the document head.</p><pre><code>&lt;link rel="stylesheet" href="../css/ribbon.css"&gt;</code></pre></section>
-<section id="examples" style="margin-top:2em"><header><h2>Examples</h2></header><p>The badge overlaps the top-right edge of this positioned panel.</p><div class="ribbon-able" style="margin:1em 1.5em 0 0;padding:2em 1em 1em;background:#fff;border:1px solid #ddd;border-radius:8px"><span class="ribbon-ribbonSNor">NEW</span><strong>New component</strong><p style="margin:.5em 0 0">A short announcement or status can sit on a card.</p></div><pre><code>&lt;article class="ribbon-able"&gt;
+    <header class="top-color">
+        <div class="site-width">
+            <div class="row">
+                <div class="col-1" style="display:flex;align-items:center;gap:.75em">
+                    <h1 style="font-size:1.5em;white-space:nowrap">Snorp {CSS}</h1>
+                    <figure style="width:42px;height:42px;flex-shrink:0"><img src="../logo.png" alt="Snorp logo"
+                            style="border-radius:8px"></figure>
+                </div>
+                <div class="col-2">
+                    <nav class="center" aria-label="Main navigation">
+                        <ul>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="../index.html#css-index">CSS Index</a></li>
+                            <li><a href="../index.html#js-index">JS Index</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="site-width pad-btm-3">
+        <section class="highlight" style="margin-top:1.5em">
+            <p><a href="../index.html">Snorp CSS</a> / Documentation / Ribbon</p>
+            <h2 style="font-size:1.8em">Ribbon</h2>
+            <p>Add a rotated badge at the top-right of a component.</p>
+            <p><strong>Type:</strong> CSS <strong>File:</strong> <code>ribbon.css</code></p>
+        </section>
+        <nav aria-label="On this page" style="margin-top:1.5em">
+            <ul style="display:flex;flex-wrap:wrap;gap:1em;list-style:none">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#examples">Examples</a></li>
+                <li><a href="#reference">Reference</a></li>
+                <li><a href="#related">Related</a></li>
+            </ul>
+        </nav>
+        <section id="overview" style="margin-top:2em">
+            <header>
+                <h2>Overview</h2>
+            </header>
+            <p>Ribbon styles a positioned host and one absolutely positioned badge. Put the badge inside the host so it
+                is placed relative to that component.</p>
+            <ul>
+                <li><code>.ribbon-able</code> establishes the positioning context.</li>
+                <li><code>.ribbon-ribbonSNor</code> styles and positions the badge.</li>
+                <li>The badge content and host design are yours to customize.</li>
+            </ul>
+        </section>
+        <section id="installation" style="margin-top:2em">
+            <header>
+                <h2>Installation</h2>
+            </header>
+            <p>Load Ribbon in the document head.</p>
+            <h3>Full version</h3>
+            <p><a href="https://8bitadam.github.io/SnorpCSS/css/ribbon.css">View/download ribbon.css</a></p>
+            <pre><code>&lt;link rel="stylesheet" href="https://8bitadam.github.io/SnorpCSS/css/ribbon.css"&gt;</code></pre>
+            <h3>Minified version</h3>
+            <p><a href="https://8bitadam.github.io/SnorpCSS/css.min/ribbon.css">View/download minified ribbon.css</a>
+            </p>
+            <pre><code>&lt;link rel="stylesheet" href="https://8bitadam.github.io/SnorpCSS/css.min/ribbon.css"&gt;</code></pre>
+        </section>
+        <section id="examples" style="margin-top:2em">
+            <header>
+                <h2>Examples</h2>
+            </header>
+            <p>The badge overlaps the top-right edge of this positioned panel.</p>
+            <div class="ribbon-able"
+                style="margin:1em 1.5em 0 0;padding:2em 1em 1em;background:#fff;border:1px solid #ddd;border-radius:8px">
+                <span class="ribbon-ribbonSNor">NEW</span><strong>New component</strong>
+                <p style="margin:.5em 0 0">A short announcement or status can sit on a card.</p>
+            </div>
+            <pre><code>&lt;article class="ribbon-able"&gt;
     &lt;span class="ribbon-ribbonSNor"&gt;NEW&lt;/span&gt;
     &lt;h3&gt;New component&lt;/h3&gt;
     &lt;p&gt;Card content goes here.&lt;/p&gt;
-&lt;/article&gt;</code></pre><p>Allow room for the rotated badge near the host edge, and avoid clipping it with <code>overflow: hidden</code>.</p></section>
-<section id="reference" style="margin-top:2em"><header><h2>Reference</h2></header><div style="overflow-x:auto"><table><thead><tr><th scope="col">Class</th><th scope="col">Effect</th></tr></thead><tbody><tr><td><code>.ribbon-able</code></td><td>Sets <code>position: relative</code> on the badge's host.</td></tr><tr><td><code>.ribbon-ribbonSNor</code></td><td>Positions, rotates, and colors the badge.</td></tr></tbody></table></div><p>The badge defaults to an orange background and white text. Override these values in your own stylesheet for other themes.</p></section>
-<section id="related" style="margin-top:2em"><header><h2>Related</h2></header><ul><li><a href="zPop.html">zPop</a> - Adjust the stacking order of overlapping elements.</li><li><a href="Flippy.html">Flippy</a> - Create a two-sided card component.</li></ul></section><p><a href="../index.html" class="btn">Back to Snorp CSS</a></p>
-</main><footer><p>Snorp CSS &copy; 2026 - Modular CSS Layout Engine</p></footer>
+&lt;/article&gt;</code></pre>
+            <p>Allow room for the rotated badge near the host edge, and avoid clipping it with
+                <code>overflow: hidden</code>.</p>
+        </section>
+        <section id="reference" style="margin-top:2em">
+            <header>
+                <h2>Reference</h2>
+            </header>
+            <div style="overflow-x:auto">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Class</th>
+                            <th scope="col">Effect</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>.ribbon-able</code></td>
+                            <td>Sets <code>position: relative</code> on the badge's host.</td>
+                        </tr>
+                        <tr>
+                            <td><code>.ribbon-ribbonSNor</code></td>
+                            <td>Positions, rotates, and colors the badge.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>The badge defaults to an orange background and white text. Override these values in your own stylesheet
+                for other themes.</p>
+        </section>
+        <section id="related" style="margin-top:2em">
+            <header>
+                <h2>Related</h2>
+            </header>
+            <ul>
+                <li><a href="zPop.html">zPop</a> - Adjust the stacking order of overlapping elements.</li>
+                <li><a href="Flippy.html">Flippy</a> - Create a two-sided card component.</li>
+            </ul>
+        </section>
+        <p><a href="../index.html" class="btn">Back to Snorp CSS</a></p>
+    </main>
+    <footer>
+        <p>Snorp CSS &copy; 2026 - Modular CSS Layout Engine</p>
+    </footer>
 </body>
+
 </html>

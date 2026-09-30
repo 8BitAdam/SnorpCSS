@@ -1,22 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Defer media and background image loading with LazyLoader.js."><title>Lazy Loader | Snorp CSS</title>
-    <link rel="stylesheet" href="../css/flexi.css"><link rel="stylesheet" href="../nonSnorpCSS/style.css"><link rel="shortcut icon" href="../logo.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Defer media and background image loading with LazyLoader.js.">
+    <title>Lazy Loader | Snorp CSS</title>
+    <link rel="stylesheet" href="../css/flexi.css">
+    <link rel="stylesheet" href="../nonSnorpCSS/style.css">
+    <link rel="shortcut icon" href="../logo.png" type="image/x-icon">
     <script src="../js/LazyLoader.js"></script>
+    <script src="../js/A11y.js"></script>
 </head>
+
 <body>
-<header class="top-color"><div class="site-width"><div class="row"><div class="col-1" style="display:flex;align-items:center;gap:.75em"><h1 style="font-size:1.5em;white-space:nowrap">Snorp {CSS}</h1><figure style="width:42px;height:42px;flex-shrink:0"><img src="../logo.png" alt="Snorp logo" style="border-radius:8px"></figure></div><div class="col-2"><nav class="center" aria-label="Main navigation"><ul><li><a href="../index.html">Home</a></li><li><a href="../index.html#css-index">CSS Index</a></li><li><a href="../index.html#js-index">JS Index</a></li></ul></nav></div></div></div></header>
-<main class="site-width pad-btm-3">
-<section class="highlight" style="margin-top:1.5em"><p><a href="../index.html">Snorp CSS</a> / Documentation / Lazy Loader</p><h2 style="font-size:1.8em">Lazy Loader</h2><p>Defer media and background images until they are near the viewport.</p><p><strong>Type:</strong> JavaScript <strong>File:</strong> <code>LazyLoader.js</code></p></section>
-<nav aria-label="On this page" style="margin-top:1.5em"><ul style="display:flex;flex-wrap:wrap;gap:1em;list-style:none"><li><a href="#overview">Overview</a></li><li><a href="#installation">Installation</a></li><li><a href="#examples">Examples</a></li><li><a href="#reference">Reference</a></li><li><a href="#related">Related</a></li></ul></nav>
-<section id="overview" style="margin-top:2em"><header><h2>Overview</h2></header><p>LazyLoader watches media elements and moves deferred data attributes into their active source attributes as they approach the viewport. Plain media URLs can also use the browser's native lazy-loading hints.</p><ul><li>Supports images, video, audio, iframes, picture sources, and CSS backgrounds.</li><li>Can observe elements added to the page later.</li><li>Starts automatically when loaded as a browser script unless manual mode is enabled.</li></ul></section>
-<section id="installation" style="margin-top:2em"><header><h2>Installation</h2></header><p>Include the script once. The default browser build initializes automatically.</p><pre><code>&lt;script src="../js/LazyLoader.js"&gt;&lt;/script&gt;</code></pre></section>
-<section id="examples" style="margin-top:2em"><header><h2>Examples</h2></header><p>This image starts with a deferred URL; scroll it near the viewport to let the loader assign its <code>src</code>.</p><figure style="width:128px;height:128px;margin:1em 0"><img data-src="../logo.png" alt="Snorp logo loads when near the viewport" width="128" height="128" style="border-radius:8px"></figure><pre><code>&lt;img data-src="../images/photo.jpg"
+    <header class="top-color">
+        <div class="site-width">
+            <div class="row">
+                <div class="col-1" style="display:flex;align-items:center;gap:.75em">
+                    <h1 style="font-size:1.5em;white-space:nowrap">Snorp {CSS}</h1>
+                    <figure style="width:42px;height:42px;flex-shrink:0"><img src="../logo.png" alt="Snorp logo"
+                            style="border-radius:8px"></figure>
+                </div>
+                <div class="col-2">
+                    <nav class="center" aria-label="Main navigation">
+                        <ul>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="../index.html#css-index">CSS Index</a></li>
+                            <li><a href="../index.html#js-index">JS Index</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="site-width pad-btm-3">
+        <section class="highlight" style="margin-top:1.5em">
+            <p><a href="../index.html">Snorp CSS</a> / Documentation / Lazy Loader</p>
+            <h2 style="font-size:1.8em">Lazy Loader</h2>
+            <p>Defer media and background images until they are near the viewport.</p>
+            <p><strong>Type:</strong> JavaScript <strong>File:</strong> <code>LazyLoader.js</code></p>
+        </section>
+        <nav aria-label="On this page" style="margin-top:1.5em">
+            <ul style="display:flex;flex-wrap:wrap;gap:1em;list-style:none">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#examples">Examples</a></li>
+                <li><a href="#reference">Reference</a></li>
+                <li><a href="#related">Related</a></li>
+            </ul>
+        </nav>
+        <section id="overview" style="margin-top:2em">
+            <header>
+                <h2>Overview</h2>
+            </header>
+            <p>LazyLoader watches media elements and moves deferred data attributes into their active source attributes
+                as they approach the viewport. Plain media URLs can also use the browser's native lazy-loading hints.
+            </p>
+            <ul>
+                <li>Supports images, video, audio, iframes, picture sources, and CSS backgrounds.</li>
+                <li>Can observe elements added to the page later.</li>
+                <li>Starts automatically when loaded as a browser script unless manual mode is enabled.</li>
+            </ul>
+        </section>
+        <section id="installation" style="margin-top:2em">
+            <header>
+                <h2>Installation</h2>
+            </header>
+            <p>Include the script once. The default browser build initializes automatically.</p>
+            <h3>Full version</h3>
+            <p><a href="https://8bitadam.github.io/SnorpCSS/js/LazyLoader.js">View/download LazyLoader.js</a></p>
+            <pre><code>&lt;script src="https://8bitadam.github.io/SnorpCSS/js/LazyLoader.js"&gt;&lt;/script&gt;</code></pre>
+            <h3>Minified version</h3>
+            <p><a href="https://8bitadam.github.io/SnorpCSS/js.min/LazyLoader.js">View/download minified
+                    LazyLoader.js</a></p>
+            <pre><code>&lt;script src="https://8bitadam.github.io/SnorpCSS/js.min/LazyLoader.js"&gt;&lt;/script&gt;</code></pre>
+        </section>
+        <section id="examples" style="margin-top:2em">
+            <header>
+                <h2>Examples</h2>
+            </header>
+            <p>This image starts with a deferred URL; scroll it near the viewport to let the loader assign its
+                <code>src</code>.</p>
+            <figure style="width:128px;height:128px;margin:1em 0"><img data-src="../logo.png"
+                    alt="Snorp logo loads when near the viewport" width="128" height="128" style="border-radius:8px">
+            </figure>
+            <pre><code>&lt;img data-src="../images/photo.jpg"
      alt="Description of the photo"
-     width="640" height="400"&gt;</code></pre><p>Provide dimensions to reserve layout space while the image is pending.</p></section>
-<section id="reference" style="margin-top:2em"><header><h2>Reference</h2></header><div style="overflow-x:auto"><table><thead><tr><th scope="col">API or attribute</th><th scope="col">Purpose</th></tr></thead><tbody><tr><td><code>data-src</code>, <code>data-srcset</code>, <code>data-poster</code></td><td>Deferred media source values.</td></tr><tr><td><code>data-bg</code></td><td>Deferred CSS background image.</td></tr><tr><td><code>data-lazyload="false"</code></td><td>Opt out on an element or an ancestor.</td></tr><tr><td><code>LazyLoad.init(options)</code></td><td>Manually initialize and receive the loader instance.</td></tr><tr><td><code>update(scope)</code>, <code>load(element)</code>, <code>destroy()</code></td><td>Scan new content, load one element immediately, or disconnect.</td></tr></tbody></table></div><p>The default intersection margin starts loading roughly 200px before an item enters the viewport. With JavaScript disabled, deferred <code>data-src</code> values are not loaded.</p></section>
-<section id="related" style="margin-top:2em"><header><h2>Related</h2></header><ul><li><a href="Scroller.html">Scroller</a> - Smooth-scroll to content targets.</li><li><a href="A11y.html">A11y Accessibility</a> - Respect reduced-motion preferences.</li></ul></section><p><a href="../index.html" class="btn">Back to Snorp CSS</a></p>
-</main><footer><p>Snorp CSS &copy; 2026 - Modular CSS Layout Engine</p></footer>
+     width="640" height="400"&gt;</code></pre>
+            <p>Provide dimensions to reserve layout space while the image is pending.</p>
+        </section>
+        <section id="reference" style="margin-top:2em">
+            <header>
+                <h2>Reference</h2>
+            </header>
+            <div style="overflow-x:auto">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">API or attribute</th>
+                            <th scope="col">Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>data-src</code>, <code>data-srcset</code>, <code>data-poster</code></td>
+                            <td>Deferred media source values.</td>
+                        </tr>
+                        <tr>
+                            <td><code>data-bg</code></td>
+                            <td>Deferred CSS background image.</td>
+                        </tr>
+                        <tr>
+                            <td><code>data-lazyload="false"</code></td>
+                            <td>Opt out on an element or an ancestor.</td>
+                        </tr>
+                        <tr>
+                            <td><code>LazyLoad.init(options)</code></td>
+                            <td>Manually initialize and receive the loader instance.</td>
+                        </tr>
+                        <tr>
+                            <td><code>update(scope)</code>, <code>load(element)</code>, <code>destroy()</code></td>
+                            <td>Scan new content, load one element immediately, or disconnect.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>The default intersection margin starts loading roughly 200px before an item enters the viewport. With
+                JavaScript disabled, deferred <code>data-src</code> values are not loaded.</p>
+        </section>
+        <section id="related" style="margin-top:2em">
+            <header>
+                <h2>Related</h2>
+            </header>
+            <ul>
+                <li><a href="Scroller.html">Scroller</a> - Smooth-scroll to content targets.</li>
+                <li><a href="A11y.html">A11y Accessibility</a> - Respect reduced-motion preferences.</li>
+            </ul>
+        </section>
+        <p><a href="../index.html" class="btn">Back to Snorp CSS</a></p>
+    </main>
+    <footer>
+        <p>Snorp CSS &copy; 2026 - Modular CSS Layout Engine</p>
+    </footer>
 </body>
+
 </html>

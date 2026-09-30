@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/flexi.css">
     <link rel="stylesheet" href="../nonSnorpCSS/style.css">
     <link rel="shortcut icon" href="../logo.png" type="image/x-icon">
+    <script src="../js/A11y.js"></script>
 </head>
 
 <body>
@@ -68,11 +69,19 @@
             <header style="border-bottom: 2px solid var(--main-color); padding-bottom: 0.5em; margin-bottom: 1em;">
                 <h2>Installation</h2>
             </header>
-            <p>Use the snippet that matches this asset, then replace the filename with <code>{{FILE_NAME}}</code>.</p>
-            <h3>CSS</h3>
-            <pre><code>&lt;link rel="stylesheet" href="css/{{FILE_NAME}}"&gt;</code></pre>
-            <h3>JavaScript</h3>
-            <pre><code>&lt;script src="js/{{FILE_NAME}}"&gt;&lt;/script&gt;</code></pre>
+            <p>Choose CSS or JavaScript, then use either the full or minified file.</p>
+            <h3>CSS full</h3>
+            <p><a href="https://8bitadam.github.io/SnorpCSS/css/{{FILE_NAME}}">View/download {{FILE_NAME}}</a></p>
+            <pre><code>&lt;link rel="stylesheet" href="https://8bitadam.github.io/SnorpCSS/css/{{FILE_NAME}}"&gt;</code></pre>
+            <h3>CSS minified</h3>
+            <p><a href="https://8bitadam.github.io/SnorpCSS/css.min/{{FILE_NAME}}">View/download minified {{FILE_NAME}}</a></p>
+            <pre><code>&lt;link rel="stylesheet" href="https://8bitadam.github.io/SnorpCSS/css.min/{{FILE_NAME}}"&gt;</code></pre>
+            <h3>JavaScript full</h3>
+            <p><a href="https://8bitadam.github.io/SnorpCSS/js/{{FILE_NAME}}">View/download {{FILE_NAME}}</a></p>
+            <pre><code>&lt;script src="https://8bitadam.github.io/SnorpCSS/js/{{FILE_NAME}}"&gt;&lt;/script&gt;</code></pre>
+            <h3>JavaScript minified</h3>
+            <p><a href="https://8bitadam.github.io/SnorpCSS/js.min/{{FILE_NAME}}">View/download minified {{FILE_NAME}}</a></p>
+            <pre><code>&lt;script src="https://8bitadam.github.io/SnorpCSS/js.min/{{FILE_NAME}}"&gt;&lt;/script&gt;</code></pre>
             <p>{{INSTALLATION_NOTES}}</p>
         </section>
 

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../nonSnorpCSS/style.css">
     <link rel="shortcut icon" href="../logo.png" type="image/x-icon">
     <script src="../js/Brew.js"></script>
+    <script src="../js/A11y.js"></script>
 </head>
 
 <body>
@@ -67,7 +68,12 @@
                 <h2>Installation</h2>
             </header>
             <p>Load Brew before the CoffeeScript elements or scripts that it should process.</p>
-            <pre><code>&lt;script src="../js/Brew.js"&gt;&lt;/script&gt;</code></pre>
+            <h3>Full version</h3>
+            <p><a href="https://8bitadam.github.io/SnorpCSS/js/Brew.js">View/download Brew.js</a></p>
+            <pre><code>&lt;script src="https://8bitadam.github.io/SnorpCSS/js/Brew.js"&gt;&lt;/script&gt;</code></pre>
+            <h3>Minified version</h3>
+            <p><a href="https://8bitadam.github.io/SnorpCSS/js.min/Brew.js">View/download minified Brew.js</a></p>
+            <pre><code>&lt;script src="https://8bitadam.github.io/SnorpCSS/js.min/Brew.js"&gt;&lt;/script&gt;</code></pre>
             <p>The default compiler is loaded from a CDN, so a network connection is needed until it is available in the
                 browser cache.</p>
         </section>
@@ -124,9 +130,7 @@ document.getElementById("brew-result").textContent = "CoffeeScript compiled and 
                     </tbody>
                 </table>
             </div>
-            <p>Serve this page over HTTP instead of opening it with <code>file://</code>: the relative
-                <code>../js/Brew.js</code> path will not resolve as a local file, and external CoffeeScript sources require
-                fetch access.</p>
+            <p>Serve this page over HTTP instead of opening it with <code>file://</code>; external CoffeeScript sources require fetch access.</p>
         </section>
         <section id="related" style="margin-top:2em">
             <header>

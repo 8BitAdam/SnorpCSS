@@ -1,25 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Add positioned tooltips to controls with ToolTippy.js."><title>ToolTippy | Snorp CSS</title>
-    <link rel="stylesheet" href="../css/flexi.css"><link rel="stylesheet" href="../nonSnorpCSS/style.css"><link rel="shortcut icon" href="../logo.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Add positioned tooltips to controls with ToolTippy.js.">
+    <title>ToolTippy | Snorp CSS</title>
+    <link rel="stylesheet" href="../css/flexi.css">
+    <link rel="stylesheet" href="../nonSnorpCSS/style.css">
+    <link rel="shortcut icon" href="../logo.png" type="image/x-icon">
     <script src="../js/ToolTippy.js"></script>
+    <script src="../js/A11y.js"></script>
 </head>
+
 <body>
-<header class="top-color"><div class="site-width"><div class="row"><div class="col-1" style="display:flex;align-items:center;gap:.75em"><h1 style="font-size:1.5em;white-space:nowrap">Snorp {CSS}</h1><figure style="width:42px;height:42px;flex-shrink:0"><img src="../logo.png" alt="Snorp logo" style="border-radius:8px"></figure></div><div class="col-2"><nav class="center" aria-label="Main navigation"><ul><li><a href="../index.html">Home</a></li><li><a href="../index.html#css-index">CSS Index</a></li><li><a href="../index.html#js-index">JS Index</a></li></ul></nav></div></div></div></header>
-<main class="site-width pad-btm-3">
-<section class="highlight" style="margin-top:1.5em"><p><a href="../index.html">Snorp CSS</a> / Documentation / ToolTippy</p><h2 style="font-size:1.8em">ToolTippy</h2><p>Show a positioned tooltip for an element with a <code>data-tooltip</code> attribute.</p><p><strong>Type:</strong> JavaScript <strong>File:</strong> <code>ToolTippy.js</code></p></section>
-<nav aria-label="On this page" style="margin-top:1.5em"><ul style="display:flex;flex-wrap:wrap;gap:1em;list-style:none"><li><a href="#overview">Overview</a></li><li><a href="#installation">Installation</a></li><li><a href="#examples">Examples</a></li><li><a href="#reference">Reference</a></li><li><a href="#related">Related</a></li></ul></nav>
-<section id="overview" style="margin-top:2em"><header><h2>Overview</h2></header><p>ToolTippy creates one tooltip and positions it around the active target, keeping it inside the viewport when possible.</p><ul><li>Set tooltip text in HTML with <code>data-tooltip</code>.</li><li>Choose a preferred side and optional show delay.</li><li>Supports pointer hover, keyboard focus, touch, and Escape to dismiss.</li></ul></section>
-<section id="installation" style="margin-top:2em"><header><h2>Installation</h2></header><p>Load the script once on the page. It installs delegated event handlers for matching elements.</p><pre><code>&lt;script src="../js/ToolTippy.js"&gt;&lt;/script&gt;</code></pre></section>
-<section id="examples" style="margin-top:2em"><header><h2>Examples</h2></header><p>Hover, focus, or tap the button to display its tooltip.</p><button class="btn" type="button" data-tooltip="Copies the current share link" data-tooltip-position="top" data-tooltip-delay="250">Share link</button><pre><code>&lt;button type="button"
+    <header class="top-color">
+        <div class="site-width">
+            <div class="row">
+                <div class="col-1" style="display:flex;align-items:center;gap:.75em">
+                    <h1 style="font-size:1.5em;white-space:nowrap">Snorp {CSS}</h1>
+                    <figure style="width:42px;height:42px;flex-shrink:0"><img src="../logo.png" alt="Snorp logo"
+                            style="border-radius:8px"></figure>
+                </div>
+                <div class="col-2">
+                    <nav class="center" aria-label="Main navigation">
+                        <ul>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="../index.html#css-index">CSS Index</a></li>
+                            <li><a href="../index.html#js-index">JS Index</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="site-width pad-btm-3">
+        <section class="highlight" style="margin-top:1.5em">
+            <p><a href="../index.html">Snorp CSS</a> / Documentation / ToolTippy</p>
+            <h2 style="font-size:1.8em">ToolTippy</h2>
+            <p>Show a positioned tooltip for an element with a <code>data-tooltip</code> attribute.</p>
+            <p><strong>Type:</strong> JavaScript <strong>File:</strong> <code>ToolTippy.js</code></p>
+        </section>
+        <nav aria-label="On this page" style="margin-top:1.5em">
+            <ul style="display:flex;flex-wrap:wrap;gap:1em;list-style:none">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#examples">Examples</a></li>
+                <li><a href="#reference">Reference</a></li>
+                <li><a href="#related">Related</a></li>
+            </ul>
+        </nav>
+        <section id="overview" style="margin-top:2em">
+            <header>
+                <h2>Overview</h2>
+            </header>
+            <p>ToolTippy creates one tooltip and positions it around the active target, keeping it inside the viewport
+                when possible.</p>
+            <ul>
+                <li>Set tooltip text in HTML with <code>data-tooltip</code>.</li>
+                <li>Choose a preferred side and optional show delay.</li>
+                <li>Supports pointer hover, keyboard focus, touch, and Escape to dismiss.</li>
+            </ul>
+        </section>
+        <section id="installation" style="margin-top:2em">
+            <header>
+                <h2>Installation</h2>
+            </header>
+            <p>Load the script once on the page. It installs delegated event handlers for matching elements.</p>
+            <h3>Full version</h3>
+            <p><a href="https://8bitadam.github.io/SnorpCSS/js/ToolTippy.js">View/download ToolTippy.js</a></p>
+            <pre><code>&lt;script src="https://8bitadam.github.io/SnorpCSS/js/ToolTippy.js"&gt;&lt;/script&gt;</code></pre>
+            <h3>Minified version</h3>
+            <p><a href="https://8bitadam.github.io/SnorpCSS/js.min/ToolTippy.js">View/download minified ToolTippy.js</a>
+            </p>
+            <pre><code>&lt;script src="https://8bitadam.github.io/SnorpCSS/js.min/ToolTippy.js"&gt;&lt;/script&gt;</code></pre>
+        </section>
+        <section id="examples" style="margin-top:2em">
+            <header>
+                <h2>Examples</h2>
+            </header>
+            <p>Hover, focus, or tap the button to display its tooltip.</p><button class="btn" type="button"
+                data-tooltip="Copies the current share link" data-tooltip-position="top" data-tooltip-delay="250">Share
+                link</button>
+            <pre><code>&lt;button type="button"
         data-tooltip="Copies the current share link"
         data-tooltip-position="top"
         data-tooltip-delay="250"&gt;
     Share link
-&lt;/button&gt;</code></pre><p>The tooltip text is plain text, so it is safe to include punctuation and line breaks using <code>\n</code>.</p></section>
-<section id="reference" style="margin-top:2em"><header><h2>Reference</h2></header><div style="overflow-x:auto"><table><thead><tr><th scope="col">Attribute</th><th scope="col">Purpose</th><th scope="col">Values</th></tr></thead><tbody><tr><td><code>data-tooltip</code></td><td>Tooltip content; required.</td><td>Text.</td></tr><tr><td><code>data-tooltip-position</code></td><td>Preferred placement around the target.</td><td><code>top</code>, <code>bottom</code>, <code>left</code>, or <code>right</code>; defaults to top.</td></tr><tr><td><code>data-tooltip-delay</code></td><td>Delay before showing.</td><td>Milliseconds; defaults to 150.</td></tr></tbody></table></div><p>Tooltips supplement labels; do not use them as the only way to provide essential instructions or names.</p></section>
-<section id="related" style="margin-top:2em"><header><h2>Related</h2></header><ul><li><a href="A11y.html">A11y Accessibility</a> - Add visitor-controlled reading settings.</li><li><a href="Wordy.html">Wordy</a> - Control text wrapping and decoration.</li></ul></section><p><a href="../index.html" class="btn">Back to Snorp CSS</a></p>
-</main><footer><p>Snorp CSS &copy; 2026 - Modular CSS Layout Engine</p></footer>
+&lt;/button&gt;</code></pre>
+            <p>The tooltip text is plain text, so it is safe to include punctuation and line breaks using
+                <code>\n</code>.</p>
+        </section>
+        <section id="reference" style="margin-top:2em">
+            <header>
+                <h2>Reference</h2>
+            </header>
+            <div style="overflow-x:auto">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Attribute</th>
+                            <th scope="col">Purpose</th>
+                            <th scope="col">Values</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>data-tooltip</code></td>
+                            <td>Tooltip content; required.</td>
+                            <td>Text.</td>
+                        </tr>
+                        <tr>
+                            <td><code>data-tooltip-position</code></td>
+                            <td>Preferred placement around the target.</td>
+                            <td><code>top</code>, <code>bottom</code>, <code>left</code>, or <code>right</code>;
+                                defaults to top.</td>
+                        </tr>
+                        <tr>
+                            <td><code>data-tooltip-delay</code></td>
+                            <td>Delay before showing.</td>
+                            <td>Milliseconds; defaults to 150.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Tooltips supplement labels; do not use them as the only way to provide essential instructions or names.
+            </p>
+        </section>
+        <section id="related" style="margin-top:2em">
+            <header>
+                <h2>Related</h2>
+            </header>
+            <ul>
+                <li><a href="A11y.html">A11y Accessibility</a> - Add visitor-controlled reading settings.</li>
+                <li><a href="Wordy.html">Wordy</a> - Control text wrapping and decoration.</li>
+            </ul>
+        </section>
+        <p><a href="../index.html" class="btn">Back to Snorp CSS</a></p>
+    </main>
+    <footer>
+        <p>Snorp CSS &copy; 2026 - Modular CSS Layout Engine</p>
+    </footer>
 </body>
+
 </html>

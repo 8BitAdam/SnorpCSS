@@ -1,24 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Use Spray CSS color utilities for text, backgrounds, borders, and controls."><title>Spray | Snorp CSS</title>
-    <link rel="stylesheet" href="../css/flexi.css"><link rel="stylesheet" href="../css/spray.css"><link rel="stylesheet" href="../nonSnorpCSS/style.css"><link rel="shortcut icon" href="../logo.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Use Spray CSS color utilities for text, backgrounds, borders, and controls.">
+    <title>Spray | Snorp CSS</title>
+    <link rel="stylesheet" href="../css/flexi.css">
+    <link rel="stylesheet" href="../css/spray.css">
+    <link rel="stylesheet" href="../nonSnorpCSS/style.css">
+    <link rel="shortcut icon" href="../logo.png" type="image/x-icon">
+    <script src="../js/A11y.js"></script>
 </head>
+
 <body>
-<header class="top-color"><div class="site-width"><div class="row"><div class="col-1" style="display:flex;align-items:center;gap:.75em"><h1 style="font-size:1.5em;white-space:nowrap">Snorp {CSS}</h1><figure style="width:42px;height:42px;flex-shrink:0"><img src="../logo.png" alt="Snorp logo" style="border-radius:8px"></figure></div><div class="col-2"><nav class="center" aria-label="Main navigation"><ul><li><a href="../index.html">Home</a></li><li><a href="../index.html#css-index">CSS Index</a></li><li><a href="../index.html#js-index">JS Index</a></li></ul></nav></div></div></div></header>
-<main class="site-width pad-btm-3">
-<section class="highlight" style="margin-top:1.5em"><p><a href="../index.html">Snorp CSS</a> / Documentation / Spray</p><h2 style="font-size:1.8em">Spray</h2><p>Apply named CSS colors to text, backgrounds, borders, and more with utility classes.</p><p><strong>Type:</strong> CSS <strong>File:</strong> <code>spray.css</code></p></section>
-<nav aria-label="On this page" style="margin-top:1.5em"><ul style="display:flex;flex-wrap:wrap;gap:1em;list-style:none"><li><a href="#overview">Overview</a></li><li><a href="#installation">Installation</a></li><li><a href="#examples">Examples</a></li><li><a href="#reference">Reference</a></li><li><a href="#related">Related</a></li></ul></nav>
-<section id="overview" style="margin-top:2em"><header><h2>Overview</h2></header><p>Spray turns standard CSS named colors into classes for common color properties. Pick the property prefix, then append the color name.</p><ul><li>Use the same named color for text, surfaces, and borders.</li><li>Color classes also cover outlines, accents, SVG fills, and strokes.</li><li>Combine with your own layout and spacing styles.</li></ul></section>
-<section id="installation" style="margin-top:2em"><header><h2>Installation</h2></header><p>Load Spray in the document head.</p><pre><code>&lt;link rel="stylesheet" href="../css/spray.css"&gt;</code></pre></section>
-<section id="examples" style="margin-top:2em"><header><h2>Examples</h2></header><p>These live examples use the same color, Coral, for text, background, border, and a form control accent.</p>
-<div style="display:flex;flex-wrap:wrap;gap:1em;align-items:center;padding:1em;background:#fff;border-radius:8px"><strong class="spray-color-coral">Coral text</strong><span class="spray-bg-coral" style="padding:.6em;color:#222">Coral background</span><span class="spray-brd-coral" style="border:3px solid;padding:.4em">Coral border</span><label><input class="spray-accent-coral" type="checkbox" checked> Selected</label></div>
-<pre><code>&lt;p class="spray-color-coral"&gt;Coral text&lt;/p&gt;
+    <header class="top-color">
+        <div class="site-width">
+            <div class="row">
+                <div class="col-1" style="display:flex;align-items:center;gap:.75em">
+                    <h1 style="font-size:1.5em;white-space:nowrap">Snorp {CSS}</h1>
+                    <figure style="width:42px;height:42px;flex-shrink:0"><img src="../logo.png" alt="Snorp logo"
+                            style="border-radius:8px"></figure>
+                </div>
+                <div class="col-2">
+                    <nav class="center" aria-label="Main navigation">
+                        <ul>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="../index.html#css-index">CSS Index</a></li>
+                            <li><a href="../index.html#js-index">JS Index</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="site-width pad-btm-3">
+        <section class="highlight" style="margin-top:1.5em">
+            <p><a href="../index.html">Snorp CSS</a> / Documentation / Spray</p>
+            <h2 style="font-size:1.8em">Spray</h2>
+            <p>Apply named CSS colors to text, backgrounds, borders, and more with utility classes.</p>
+            <p><strong>Type:</strong> CSS <strong>File:</strong> <code>spray.css</code></p>
+        </section>
+        <nav aria-label="On this page" style="margin-top:1.5em">
+            <ul style="display:flex;flex-wrap:wrap;gap:1em;list-style:none">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#examples">Examples</a></li>
+                <li><a href="#reference">Reference</a></li>
+                <li><a href="#related">Related</a></li>
+            </ul>
+        </nav>
+        <section id="overview" style="margin-top:2em">
+            <header>
+                <h2>Overview</h2>
+            </header>
+            <p>Spray turns standard CSS named colors into classes for common color properties. Pick the property prefix,
+                then append the color name.</p>
+            <ul>
+                <li>Use the same named color for text, surfaces, and borders.</li>
+                <li>Color classes also cover outlines, accents, SVG fills, and strokes.</li>
+                <li>Combine with your own layout and spacing styles.</li>
+            </ul>
+        </section>
+        <section id="installation" style="margin-top:2em">
+            <header>
+                <h2>Installation</h2>
+            </header>
+            <p>Load Spray in the document head.</p>
+            <h3>Full version</h3>
+            <p><a href="https://8bitadam.github.io/SnorpCSS/css/spray.css">View/download spray.css</a></p>
+            <pre><code>&lt;link rel="stylesheet" href="https://8bitadam.github.io/SnorpCSS/css/spray.css"&gt;</code></pre>
+            <h3>Minified version</h3>
+            <p><a href="https://8bitadam.github.io/SnorpCSS/css.min/spray.css">View/download minified spray.css</a></p>
+            <pre><code>&lt;link rel="stylesheet" href="https://8bitadam.github.io/SnorpCSS/css.min/spray.css"&gt;</code></pre>
+        </section>
+        <section id="examples" style="margin-top:2em">
+            <header>
+                <h2>Examples</h2>
+            </header>
+            <p>These live examples use the same color, Coral, for text, background, border, and a form control accent.
+            </p>
+            <div
+                style="display:flex;flex-wrap:wrap;gap:1em;align-items:center;padding:1em;background:#fff;border-radius:8px">
+                <strong class="spray-color-coral">Coral text</strong><span class="spray-bg-coral"
+                    style="padding:.6em;color:#222">Coral background</span><span class="spray-brd-coral"
+                    style="border:3px solid;padding:.4em">Coral border</span><label><input class="spray-accent-coral"
+                        type="checkbox" checked> Selected</label></div>
+            <pre><code>&lt;p class="spray-color-coral"&gt;Coral text&lt;/p&gt;
 &lt;div class="spray-bg-coral"&gt;Coral background&lt;/div&gt;
 &lt;button class="spray-brd-coral"&gt;Coral border&lt;/button&gt;
-&lt;input class="spray-accent-coral" type="checkbox"&gt;</code></pre><p>For a dark background, choose a contrasting text color separately, such as <code>spray-color-white</code>.</p></section>
-<section id="reference" style="margin-top:2em"><header><h2>Reference</h2></header><div style="overflow-x:auto"><table><thead><tr><th scope="col">Prefix</th><th scope="col">CSS property</th><th scope="col">Example</th></tr></thead><tbody><tr><td><code>spray-color-</code></td><td><code>color</code></td><td><code>spray-color-coral</code></td></tr><tr><td><code>spray-bg-</code></td><td><code>background-color</code></td><td><code>spray-bg-coral</code></td></tr><tr><td><code>spray-brd-</code></td><td><code>border-color</code></td><td><code>spray-brd-coral</code></td></tr><tr><td><code>spray-olc-</code>, <code>spray-tdc-</code></td><td>Outline and text-decoration colors</td><td><code>spray-olc-coral</code></td></tr><tr><td><code>spray-accent-</code>, <code>spray-caret-</code></td><td>Control accent and text caret colors</td><td><code>spray-accent-coral</code></td></tr><tr><td><code>spray-fill-</code>, <code>spray-stroke-</code></td><td>SVG fill and stroke</td><td><code>spray-fill-coral</code></td></tr></tbody></table></div><p>Each prefix is followed by a supported CSS named color in lowercase, for example <code>tomato</code>, <code>coral</code>, or <code>cornflowerblue</code>.</p></section>
-<section id="related" style="margin-top:2em"><header><h2>Related</h2></header><ul><li><a href="Glass.html">Glass</a> - Fade a colored element with opacity utilities.</li><li><a href="Ribbon.html">Ribbon</a> - Add a colored label to a component.</li></ul></section><p><a href="../index.html" class="btn">Back to Snorp CSS</a></p>
-</main><footer><p>Snorp CSS &copy; 2026 - Modular CSS Layout Engine</p></footer>
+&lt;input class="spray-accent-coral" type="checkbox"&gt;</code></pre>
+            <p>For a dark background, choose a contrasting text color separately, such as
+                <code>spray-color-white</code>.</p>
+        </section>
+        <section id="reference" style="margin-top:2em">
+            <header>
+                <h2>Reference</h2>
+            </header>
+            <div style="overflow-x:auto">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Prefix</th>
+                            <th scope="col">CSS property</th>
+                            <th scope="col">Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>spray-color-</code></td>
+                            <td><code>color</code></td>
+                            <td><code>spray-color-coral</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>spray-bg-</code></td>
+                            <td><code>background-color</code></td>
+                            <td><code>spray-bg-coral</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>spray-brd-</code></td>
+                            <td><code>border-color</code></td>
+                            <td><code>spray-brd-coral</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>spray-olc-</code>, <code>spray-tdc-</code></td>
+                            <td>Outline and text-decoration colors</td>
+                            <td><code>spray-olc-coral</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>spray-accent-</code>, <code>spray-caret-</code></td>
+                            <td>Control accent and text caret colors</td>
+                            <td><code>spray-accent-coral</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>spray-fill-</code>, <code>spray-stroke-</code></td>
+                            <td>SVG fill and stroke</td>
+                            <td><code>spray-fill-coral</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Each prefix is followed by a supported CSS named color in lowercase, for example <code>tomato</code>,
+                <code>coral</code>, or <code>cornflowerblue</code>.</p>
+        </section>
+        <section id="related" style="margin-top:2em">
+            <header>
+                <h2>Related</h2>
+            </header>
+            <ul>
+                <li><a href="Glass.html">Glass</a> - Fade a colored element with opacity utilities.</li>
+                <li><a href="Ribbon.html">Ribbon</a> - Add a colored label to a component.</li>
+            </ul>
+        </section>
+        <p><a href="../index.html" class="btn">Back to Snorp CSS</a></p>
+    </main>
+    <footer>
+        <p>Snorp CSS &copy; 2026 - Modular CSS Layout Engine</p>
+    </footer>
 </body>
+
 </html>
