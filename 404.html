@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f2a359">
+    <meta name="description" content="The page you requested could not be found. Browse Snorp CSS modules and documentation.">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Page Not Found | Snorp CSS</title>
+    <link rel="shortcut icon" href="https://8bitadam.github.io/SnorpCSS/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://8bitadam.github.io/SnorpCSS/css/flexi.css">
+    <link rel="stylesheet" href="https://8bitadam.github.io/SnorpCSS/nonSnorpCSS/style.css">
+    <script src="https://8bitadam.github.io/SnorpCSS/js/A11y.js" defer></script>
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body > header .site-width {
+            padding-top: 0.75em;
+            padding-bottom: 0.75em;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75em;
+            color: var(--color-dark);
+            text-decoration: none;
+        }
+
+        .brand img {
+            display: block;
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+        }
+
+        .brand span {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .primary-nav ul {
+            justify-content: flex-end;
+        }
+
+        main.site-width {
+            flex: 1;
+            width: 100%;
+        }
+
+        .not-found-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+            align-items: center;
+            gap: 3em;
+            padding: 4em 0 3.5em;
+        }
+
+        .eyebrow,
+        .route-label,
+        .destination-type {
+            color: #626b5c;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .error-number {
+            margin: 0.1em 0 0.2em;
+            color: var(--color-link);
+            font-size: 6rem;
+            font-weight: 800;
+            line-height: 0.95;
+        }
+
+        .error-copy h2 {
+            max-width: 12ch;
+            margin-bottom: 0.5em;
+            font-size: 2.4rem;
+            line-height: 1.12;
+        }
+
+        .error-copy > p:not(.eyebrow) {
+            max-width: 48ch;
+            color: #596052;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.75em;
+            margin-top: 1.5em;
+        }
+
+        .actions .btn {
+            margin-top: 0;
+        }
+
+        .secondary-link {
+            display: inline-block;
+            padding: 0.75em 0.25em;
+            color: var(--color-dark);
+            font-weight: 700;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.2em;
+        }
+
+        .route-panel {
+            padding: 1.5em;
+            background: #fff;
+            border: 1px solid rgba(47, 55, 44, 0.14);
+            border-left: 5px solid var(--main-color);
+            border-radius: 6px;
+            box-shadow: 0 10px 28px rgba(47, 55, 44, 0.08);
+        }
+
+        .route-panel-top {
+            display: flex;
+            align-items: center;
+            gap: 0.6em;
+            padding-bottom: 1em;
+            border-bottom: 1px solid rgba(47, 55, 44, 0.12);
+            color: #596052;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .status-mark {
+            width: 10px;
+            height: 10px;
+            flex: 0 0 10px;
+            background: #d65d4b;
+            border-radius: 50%;
+        }
+
+        .route-code {
+            margin: 1em 0 0.25em;
+            color: var(--color-dark);
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .route-label {
+            margin-bottom: 0.5em;
+        }
+
+        .requested-path {
+            display: block;
+            padding: 0.8em;
+            overflow-wrap: anywhere;
+            background: var(--color-light);
+            border-radius: 4px;
+            color: var(--color-dark);
+            font-size: 0.9rem;
+        }
+
+        .route-note {
+            margin-top: 1em;
+            color: #596052;
+        }
+
+        .destinations {
+            padding: 2em 0 3em;
+            border-top: 1px solid rgba(47, 55, 44, 0.16);
+        }
+
+        .destinations h2 {
+            margin-bottom: 1em;
+            font-size: 1.35rem;
+        }
+
+        .destination-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.8em;
+        }
+
+        .destination-link {
+            display: flex;
+            min-height: 122px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.35em;
+            padding: 1em;
+            background: #fff;
+            border: 1px solid rgba(47, 55, 44, 0.14);
+            border-radius: 6px;
+            color: var(--color-dark);
+            text-decoration: none;
+            transition: border-color 0.18s ease, transform 0.18s ease;
+        }
+
+        .destination-link strong {
+            font-size: 1rem;
+        }
+
+        .destination-link > span:last-child {
+            color: #596052;
+            font-size: 0.9rem;
+        }
+
+        .destination-link:hover {
+            transform: translateY(-2px);
+            border-color: var(--main-color);
+        }
+
+        a:focus-visible {
+            outline: 3px solid var(--color-link);
+            outline-offset: 3px;
+        }
+
+        .site-footer {
+            margin-top: 0;
+        }
+
+        @media (max-width: 800px) {
+            .primary-nav ul {
+                align-items: stretch;
+            }
+
+            .not-found-layout {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 2em;
+                padding: 2.5em 0;
+            }
+
+            .error-number {
+                font-size: 5rem;
+            }
+
+            .error-copy h2 {
+                font-size: 2rem;
+            }
+
+            .destination-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .destination-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .destination-link {
+                min-height: 96px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="top-color">
+        <div class="site-width">
+            <div class="row">
+                <div class="col-1">
+                    <a class="brand" href="https://8bitadam.github.io/SnorpCSS/">
+                        <img src="https://8bitadam.github.io/SnorpCSS/logo.png" alt="">
+                        <span>Snorp {CSS}</span>
+                    </a>
+                </div>
+                <div class="col-2">
+                    <nav class="primary-nav center" aria-label="Primary navigation">
+                        <ul>
+                            <li><a href="https://8bitadam.github.io/SnorpCSS/">Home</a></li>
+                            <li><a href="https://8bitadam.github.io/SnorpCSS/#css-index">CSS Index</a></li>
+                            <li><a href="https://8bitadam.github.io/SnorpCSS/#js-index">JS Index</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="site-width">
+        <div class="not-found-layout">
+            <section class="error-copy" aria-labelledby="not-found-title">
+                <p class="eyebrow">Route not found</p>
+                <p class="error-number" aria-hidden="true">404</p>
+                <h2 id="not-found-title">That page didn't make the layout.</h2>
+                <p>The address may be outdated, or this page may have moved. The Snorp CSS library is still right here.</p>
+                <div class="actions">
+                    <a class="btn" href="https://8bitadam.github.io/SnorpCSS/">Back to Snorp CSS</a>
+                    <a class="secondary-link" href="https://8bitadam.github.io/SnorpCSS/#css-index">Browse the asset index</a>
+                </div>
+            </section>
+
+            <aside class="route-panel" aria-label="Requested page details">
+                <div class="route-panel-top"><span class="status-mark" aria-hidden="true"></span>Snorp router</div>
+                <p class="route-code">404 <span aria-hidden="true">/</span> NOT FOUND</p>
+                <p class="route-label">Requested path</p>
+                <code class="requested-path" id="requested-path">Unknown path</code>
+                <p class="route-note">No page or asset is published at this address.</p>
+            </aside>
+        </div>
+
+        <section class="destinations" aria-labelledby="destination-title">
+            <h2 id="destination-title">Try one of these instead</h2>
+            <div class="destination-grid">
+                <a class="destination-link" href="https://8bitadam.github.io/SnorpCSS/#css-index">
+                    <span class="destination-type">Stylesheets</span>
+                    <strong>CSS index</strong>
+                    <span>Browse layout and style utilities</span>
+                </a>
+                <a class="destination-link" href="https://8bitadam.github.io/SnorpCSS/#js-index">
+                    <span class="destination-type">Scripts</span>
+                    <strong>JavaScript index</strong>
+                    <span>Explore the interactive modules</span>
+                </a>
+                <a class="destination-link" href="https://8bitadam.github.io/SnorpCSS/Docs/Spray.html">
+                    <span class="destination-type">Documentation</span>
+                    <strong>Spray</strong>
+                    <span>See color utilities in action</span>
+                </a>
+                <a class="destination-link" href="https://8bitadam.github.io/SnorpCSS/Docs/Flexi.html">
+                    <span class="destination-type">Documentation</span>
+                    <strong>Flexi</strong>
+                    <span>Build proportional responsive columns</span>
+                </a>
+                <a class="destination-link" href="https://8bitadam.github.io/SnorpCSS/Docs/Brew.html">
+                    <span class="destination-type">Documentation</span>
+                    <strong>Brew</strong>
+                    <span>Compile CoffeeScript in the browser</span>
+                </a>
+                <a class="destination-link" href="https://8bitadam.github.io/SnorpCSS/Docs/A11y.html">
+                    <span class="destination-type">Documentation</span>
+                    <strong>A11y Accessibility</strong>
+                    <span>Offer visitors reading preferences</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>Snorp CSS &copy; 2026 - Modular CSS Layout Engine</p>
+    </footer>
+
+    <script>
+        document.getElementById('requested-path').textContent = window.location.pathname + window.location.search;
+    </script>
+</body>
+</html>
